@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const sizes = {
   base: 'text-base',
@@ -15,18 +15,18 @@ const sizes = {
   '7xl': 'text-7xl',
   '8xl': 'text-8xl',
   '9xl': 'text-9xl',
-};
+}
 
-type TSize = keyof typeof sizes;
+type TSize = keyof typeof sizes
 
 interface Props {
-  size: TSize;
+  size: TSize
 }
 
-const logoClassName = (size: TSize) => `font-bold text-gray-800 cursor-pointer dark:text-white ${sizes[size]}`;
+const logoClassName = (size: TSize) => `font-bold text-gray-800 cursor-pointer dark:text-white ${sizes[size]}`
 
 function Logo({ size }: Props) {
-  return <div className={logoClassName(size)}>Gamja-log</div>;
+  return <div className={logoClassName(size)}>Gamja-log</div>
 }
 
-export default Logo;
+export default Logo

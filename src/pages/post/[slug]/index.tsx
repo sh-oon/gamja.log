@@ -1,37 +1,35 @@
-import { Markdown } from '@/components/organisms/Markdown';
-import { getPostSlugs, getPostSourceBySlug } from '@/lib/serialize';
-import { TArticle } from '@/types/common';
-import { GetServerSideProps, Metadata } from 'next';
-import { useRouter } from 'next/router';
-import React from 'react';
+import { Markdown } from '@/components/organisms/Markdown'
+import { getPostSourceBySlug } from '@/lib/serialize'
+import { TArticle } from '@/types/common'
+import { GetServerSideProps } from 'next'
+import React from 'react'
 
 type Props = {
-  slug: string;
-  source: {
-    post: TArticle;
-    compiledSource: string;
-    scope: Record<string, unknown>;
-    frontmatter: Record<string, unknown>;
-  };
-};
+  slug: string
+  articleSource: {
+    post: TArticle
+    compiledSource: string
+    scope: Record<string, unknown>
+    frontmatter: Record<string, unknown>
+  }
+}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.params?.slug as string;
-  const source = await getPostSourceBySlug(slug);
-
-  console.log('source', source);
+  const slug = context.params?.slug as string
+  const articleSource = await getPostSourceBySlug(slug)
 
   return {
     props: {
       slug,
-      source,
+      articleSource,
     },
-  };
-};
+  }
+}
 
-export default function ArticlePage({ slug, source }: Props) {
-  const post = source.post;
-  console.log('slug', source);
+export default function ArticlePage({ articleSource }: Props) {
+  const post = articleSource.post
+
+  console.log(articleSource)
 
   return (
     <article className='p-3'>
@@ -42,9 +40,9 @@ export default function ArticlePage({ slug, source }: Props) {
           </h1>
         </div>
         <div className='w-[65rem] max-w-full md:max-w-[60%]'>
-          <Markdown source={source} />
+          <Markdown source={articleSource} />
         </div>
       </div>
     </article>
-  );
+  )
 }

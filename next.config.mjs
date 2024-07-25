@@ -5,14 +5,14 @@ const nextConfig = {
   transpilePackages: ['next-mdx-remote'],
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.resolve.fallback.fs = false;
+      config.resolve.fallback.fs = false
     }
 
-    return config;
+    return config
   },
   images: {
     domains: ['localhost', 'res.cloudinary.com', 'velog.velcdn.com'],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
