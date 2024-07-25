@@ -5,8 +5,8 @@ import ExternalLinkItem from '@/components/atoms/ExternalLinkItem';
 
 function HeaderComponent() {
   return (
-    <header className='flex '>
-      <div className='flex justify-between items-center w-full border-b-2 border-gray-300 h-header px-2 fixed bg-white dark:bg-black dark:border-white'>
+    <header className='flex px-6 w-full fixed'>
+      <div className='flex justify-between items-center w-full border-b-2 border-gray-900 h-header bg-white dark:bg-black dark:border-white'>
         <nav className='flex items-center gap-4'>
           <Link
             href='/'

@@ -1,11 +1,7 @@
 import React from 'react';
 
 function Index() {
-  return (
-    <div>
-      <h1>Posts</h1>
-    </div>
-  );
+  return <section className='px-6 pt-4'></section>;
 }
 
 export default Index;
