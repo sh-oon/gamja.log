@@ -29,8 +29,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function ArticlePage({ articleSource }: Props) {
   const post = articleSource.post
 
-  console.log(articleSource)
-
   return (
     <article className='p-3'>
       <div className='flex flex-col items-center'>

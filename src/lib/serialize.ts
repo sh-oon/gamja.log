@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeCode from 'rehype-pretty-code'
 import { getShikiHighlighter } from '@/lib/shiki'
 
-const articleDir = join(process.cwd(), '_articles')
+const articleDir = join(process.cwd(), 'src/_articles')
 
 export async function getPostSlugs() {
   const files = await fs.readdir(articleDir)
