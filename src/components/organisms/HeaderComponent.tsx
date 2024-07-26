@@ -8,14 +8,6 @@ import ExternalLinkItem from '@/components/atoms/ExternalLinkItem';
 import { FaGithub } from 'react-icons/fa';
 import { GrDocumentUser } from 'react-icons/gr';
 
-export const getServerSideProps = async ({ req }) => {
-  const userAgent = req.headers['user-agent'];
-
-  return {
-    props: { userAgent },
-  };
-};
-
 function HeaderComponent() {
   const { isDesktop } = useDevice();
   const router = useRouter()

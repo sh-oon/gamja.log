@@ -97,6 +97,14 @@
   code[data-line-numbers-max-digits="3"] > [data-line]::before {
     width: 3rem;
   }
+
+  li > ul {
+    padding-left: 2rem;
+  }
+
+  li > ul li {
+    list-style-type: circle;
+  }
 }
 
 @layer components {
