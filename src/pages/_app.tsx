@@ -4,15 +4,6 @@ import { DeviceProvider } from '@/context/DeviceContext';
 import type { AppProps } from 'next/app';
 import MainLayout from '@/components/MainLayout';
 
-
-export const getServerSideProps = async ({ req }) => {
-  const userAgent = req.headers['user-agent'];
-
-  return {
-    props: { userAgent },
-  };
-};
-
 export default function App({ Component, pageProps }: AppProps) {
 
   return (
