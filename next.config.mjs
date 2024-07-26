@@ -11,7 +11,11 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: ['localhost', 'res.cloudinary.com', 'velog.velcdn.com'],
+    remotePatterns: [
+      {
+        hostname: 'velog.velcdn.com',
+      }
+    ]
   },
 }
 

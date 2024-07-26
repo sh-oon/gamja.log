@@ -1,12 +1,12 @@
-import fs from 'fs/promises' // 비동기 fs 사용
-import { join } from 'path'
-import { TArticle } from '@/types/common'
-import { serialize } from 'next-mdx-remote/serialize'
-import remarkGfm from 'remark-gfm'
-import rehypeCode from 'rehype-pretty-code'
-import { getShikiHighlighter } from '@/lib/shiki'
+import fs from 'fs/promises'; // 비동기 fs 사용
+import { join } from 'path';
+import { TArticle } from '@/types/common';
+import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';
+import rehypeCode from 'rehype-pretty-code';
+import { getShikiHighlighter } from '@/lib/shiki';
 
-const articleDir = join(process.cwd(), 'src/_articles')
+const articleDir = join(process.cwd(), '_articles')
 
 export async function getPostSlugs() {
   const files = await fs.readdir(articleDir)
@@ -15,9 +15,7 @@ export async function getPostSlugs() {
 
 const getPostRawSourceBySlug = async (slug: string) => {
   const fullPath = join(articleDir, `${slug}.mdx`)
-  const fileContents = await fs.readFile(fullPath, 'utf8')
-
-  return fileContents
+  return await fs.readFile(fullPath, 'utf8')
 }
 
 export const getPostSourceBySlug = async (slug: string) => {

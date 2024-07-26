@@ -37,7 +37,7 @@ export default function ArticlePage({ articleSource }: Props) {
             {post.title}
           </h1>
         </div>
-        <div className='w-[65rem] max-w-full md:max-w-[60%]'>
+        <div className='w-[65rem] max-w-full'>
           <Markdown source={articleSource} />
         </div>
       </div>

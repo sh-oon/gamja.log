@@ -10,7 +10,7 @@ type Props = {
 
 export const Markdown = ({ source }: Props) => {
   return (
-    <article id='markdown' className='flex flex-col w-full pb-20 leading-loose gap-y-3'>
+    <article id='markdown' className='flex flex-col w-full pb-20 leading-loose gap-y-3 relative md:text-sm'>
       <MDXRemote
         {...source}
         components={{
@@ -32,7 +32,7 @@ export const Markdown = ({ source }: Props) => {
           ),
 
           // Lists
-          ul: ({ children }) => <ul className='flex flex-col list-disc list-inside gap-y-3'>{children}</ul>,
+          ul: ({ children }) => <ul className='flex flex-col list-disc list-inside gap-y-2'>{children}</ul>,
           ol: ({ children }) => <ol className='list-decimal list-inside'>{children}</ol>,
 
           // Link
@@ -50,14 +50,14 @@ export const Markdown = ({ source }: Props) => {
                 alt={alt ?? ''}
                 width={800}
                 height={400}
-                className='w-full md:w-[70%] rounded-lg shadow-md'
+                className='w-full rounded-lg shadow-md'
               />
             </span>
           ),
 
-          blockquote: ({ children }) => <blockquote className='pl-4 border-l-4 border-black'>{children}</blockquote>,
+          blockquote: ({ children }) => <blockquote className='px-4 border-l-4 border-black bg-grey-100 py-2'>{children}</blockquote>,
 
-          // Code / Pre 에 대한 스타일링은 markdown.css 에 정의
+          hr: () => <hr className='border-t-1 border-gray-200 my-2' />,
         }}
       />
     </article>
