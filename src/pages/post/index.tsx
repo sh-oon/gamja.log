@@ -1,11 +1,6 @@
-import ArticleCard from '@/components/molecules/ArticleCard';
-import ArticleTagsCard from '@/components/molecules/ArticleTagsCard';
-import Grid from '@/components/templates/Grid';
 import PostTemplate from '@/components/templates/PostTemplate';
-import { useDevice } from '@/context/DeviceContext';
 import { getAllPosts } from '@/lib/serialize';
 import { TArticle } from '@/types/common';
-import { uniqueTags } from '@/utils/common';
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
