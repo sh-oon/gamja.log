@@ -55,7 +55,7 @@ export const Markdown = ({ source }: Props) => {
             </span>
           ),
 
-          blockquote: ({ children }) => <blockquote className='px-4 border-l-4 border-black bg-grey-100 py-2'>{children}</blockquote>,
+          blockquote: ({ children }) => <blockquote className='px-4 border-l-4 border-black bg-grey-100 py-2 dark:bg-grey-900 dark:border-white'>{children}</blockquote>,
 
           hr: () => <hr className='border-t-1 border-gray-200 my-2' />,
         }}

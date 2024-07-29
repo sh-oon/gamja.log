@@ -8,9 +8,13 @@ import { getShikiHighlighter } from '@/lib/shiki';
 
 const articleDir = join(process.cwd(), '_articles')
 
-export async function getPostSlugs() {
+export async function getPostSlugs(page = 1, perPage = 10): Promise<string[]> {
   const files = await fs.readdir(articleDir)
-  return files.map((slug) => slug.replace(/\.mdx$/, ''))
+  // return files.map((slug) => slug.replace(/\.mdx$/, ''))
+
+  const start = (page - 1) * perPage
+  const end = start + perPage
+  return files.slice(start, end).map((slug) => slug.replace(/\.mdx$/, ''))
 }
 
 const getPostRawSourceBySlug = async (slug: string) => {
@@ -55,11 +59,21 @@ const getPostFrontmatterBySlug = async (slug: string) => {
   return { ...serializedData.frontmatter, slug } as TArticle
 }
 
-export const getAllPosts = async () => {
-  const slugs = await getPostSlugs()
+export const getAllPosts = async (page = 1, perPage = 10) => {
+  const slugs = await getPostSlugs(page, perPage)
 
   const posts = await Promise.all(slugs.map((slug) => getPostFrontmatterBySlug(slug))).then((sources) =>
     sources.sort((post1, post2) => (post1.date > post2.date ? -1 : 1)),
+  )
+
+  return posts
+}
+
+const getPostByTag = async (tag: string) => {
+  const slugs = await getPostSlugs()
+
+  const posts = await Promise.all(slugs.map((slug) => getPostFrontmatterBySlug(slug))).then((sources) =>
+    sources.filter((post) => post.tags.includes(tag)),
   )
 
   return posts

@@ -12,10 +12,8 @@ function HeaderComponent() {
   const { isDesktop } = useDevice();
   const router = useRouter()
 
-  console.log(router);
-
   return (
-    <header className="flex px-6 md:px-3 bg-grey-50 w-full fixed z-50">
+    <header className="flex px-6 md:px-3 w-full fixed z-50">
       <div
         className="flex justify-between items-center w-full border-b-2 border-gray-900 h-header dark:bg-black dark:border-white">
         <nav className="flex items-center gap-4 md:gap-2">
