@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
 import { getPostSourceBySlug } from '@/lib/serialize';
+import React from 'react';
 
 type Props = {
   source: Awaited<ReturnType<typeof getPostSourceBySlug>>;
@@ -10,7 +11,15 @@ type Props = {
 
 export const Markdown = ({ source }: Props) => {
   return (
-    <article id='markdown' className='flex flex-col w-full pb-20 leading-loose gap-y-3 relative md:text-sm'>
+    <article id='markdown' className='flex flex-col w-full pb-20 leading-loose gap-y-6 relative md:text-sm'>
+      <Image
+        src={source.frontmatter.coverImage ?? ''}
+        alt={source.frontmatter.title ?? ''}
+        width={1200}
+        height={600}
+        className='w-4/5 rounded-lg shadow-md mx-auto mb-20'
+        priority
+      />
       <MDXRemote
         {...source}
         components={{
