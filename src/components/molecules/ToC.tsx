@@ -11,7 +11,7 @@ function ToC() {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([]);
 
   useEffect(() => {
-    const mds = document.getElementById('markdown').querySelectorAll('h2, h3, h4, h5, h6');
+    const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6');
 
     setElementPosition(
       Array.from(mds).map((md) => {
@@ -36,7 +36,7 @@ function ToC() {
       case 'h3':
         return 'text-base pl-2';
       case 'h4':
-        return 'text-sm';
+        return 'text-sm pl-4';
       case 'h5':
         return 'text-xs';
       case 'h6':
@@ -53,7 +53,7 @@ function ToC() {
           return (
             <li
               key={el.id}
-              className={`block text-sm cursor-pointer text-grey-600 hover:text-black ${textSize(el.tag)}`}
+              className={`block text-sm cursor-pointer text-grey-600 hover:text-black dark:hover:text-grey-200 ${textSize(el.tag)}`}
               onClick={() => clickToScroll(el.id)}
             >
               {el.id}

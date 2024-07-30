@@ -18,7 +18,7 @@ function MarkdownHeader({ post }: Props) {
         <span className="text-grey-600">{formatDate(post.date, 'kr')}</span>
         <div className="flex gap-2">
           {post.tags.map((tag, index) => (
-            <span key={index} className="text-primary-main rounded-full bg-grey-200 px-3 py-1 font-semibold">{tag}</span>
+            <span key={index} className="text-primary-main rounded-full bg-grey-200 px-3 py-1 font-semibold dark:bg-grey-700">{tag}</span>
           ))}
         </div>
       </div>
