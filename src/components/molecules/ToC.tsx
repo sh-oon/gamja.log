@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 type TElementPosition = {
   id: string
   top: number
+  tag: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
 function ToC() {
