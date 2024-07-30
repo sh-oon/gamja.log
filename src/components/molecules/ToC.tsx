@@ -26,6 +26,8 @@ function ToC() {
 
   const clickToScroll = (id: string) => {
     const el = elementPosition.find((el) => el.id === id);
+    if (!el) return;
+
     window.scrollTo({ top: el.top - 120, behavior: 'smooth' });
   }
 
