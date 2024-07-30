@@ -1,0 +1,251 @@
+---
+title: Module Federation
+link: module_federation
+date: 2021-09-06
+tags:
+  - javascript
+  - web
+  - webpack
+coverImage: '/assets/webpack.webp'
+ogImage: '/assets/webpack.webp'
+---
+
+## 개요
+
+현대의 웹서비스는 나날이 발전하고 있다.
+그에 맞게 아키텍쳐도 거대해져 가고 있으며 그에 따라 코드 관리도 여려움이 많아지고 있는 배경이 있다.
+
+그에따라 모놀리식 아키텍처로 이루어저 있던 서비스에서 마이크로 서비스 아키텍처로 전환하고자 나온 개념이 바로...
+
+**마이크로 프론트엔드**이다.
+
+>
+#### 장점
+- 각 서비스의 기술 스택 선택의 자유
+- 각 서비스의 독립적인 배포
+- 각 서비스의 독립적인 테스트
+- 각 서비스의 독립적인 스케일링
+#### 단점
+- 서비스간의 공통 상태 관리가 어려움
+- 서비스간의 공통 테스트 관리가 어려움
+- 서비스의 강력한 규약이 필요
+
+
+
+![](https://velog.velcdn.com/images/r_eum/post/3d729864-60d2-46b6-bdef-6b5f29542940/image.png)
+
+위 이미지와 같이 각각의 모듈로 분리해서 개발을 하게 된다면 이 모듈들을 다시 합쳐야 한다.
+대표적으로 네가지 방식이 있다
+
+- 서비스간의 데이터 통신
+- 서버측 렌더링할 때 컴포넌트를 조합하는 방법
+- nginx 를 통한 리버스 프록시 방식
+- 빌드타임 통합
+- npm 패키지로 배포후 종속성으로 포함하는 방식
+- iframe 을 통한 런타임 통합
+- SEO 문제가 있음
+- 브라우저의 보안 정책에 따라 제약이 있음
+- javascript 를 통한 런타임 통합
+- script 태그를 통해 외부 스크립트를 로드하는 방식
+- 웹 컴포넌트를 사용할 수 있음
+
+
+### 모듈 페더레이션이란
+본격적으로 모듈 페더레이션에 대해 알아보려고 한다.
+
+개념
+- 웹팩 5에서 추가된 기능이다.
+- 컴포넌트나 서비스 단위의 앱 요소를 각각 빌드하고 노출하여 다른 앱에서 불러와 사용할 수 있도록 하는 기술이다.
+- 즉, 한개의 앱에서 다른 빌드에 있는 코드를 동적으로 실행할 수 있다.
+- 동적실행은 단방향이 아니라 양방향으로도 가능하다.
+
+### Low-Level concepts
+
+로컬 모듈과 원격 모듈을 구별
+
+- 로컬 모듈: 현재 웹팩 빌드에 포함된 모듈
+- 원격 모듈: 다른 웹팩 빌드에 포함되며 런타임에 로드되는 모듈
+- 원격 모듈은 웹팩 런타임에 로드되기 때문에 웹팩 런타임이 없는 환경에서는 사용할 수 없음
+- 원격 모듈을 로드하는 것은 비동기 작업으로 간주되며 원격 모듈과 엔트리포인트 사이에 있는 다음 청크 로드 작업에 배치된다.
+- 청크 로드 작업 없이는 원격 모듈을 사용할 수 없음
+
+청크 로드 작업은 일반적으로 import() 함수를 사용하여 수행
+
+```js
+import("module-federation-example")
+  .then((module) => {
+    // Do something with the module
+  })
+  .catch((error) => {
+    // Handle error
+  });
+```
+
+SPA 에서 각 페이지를 서로 다른 빌드에서 컨테이너 빌드로 부터 노출 시킬 수 있음
+
+공통 컴포넌트를 별도의 빌드로 분리하여, 다른 애플리케이션 들에서 컴포넌트를 불러와 사용할 수 있다.
+이 컴포넌트에 변경점이 생기면 컴포넌트만 다시 빌드하여 배포 할 수 있다.
+
+App.vue
+```vue
+<template>
+  <div id="app">
+    <h1>App 1</h1>
+    <button @click="loadRemote">Load Remote</button>
+    <div id="remote"></div>
+  </div>
+</template>
+...
+```
+
+
+Navbar.vue
+```vue
+<template>
+  <div>
+    <h1>Navbar</h1>
+  </div>
+</template>
+```
+
+Content.vue
+```vue
+<template>
+  <div>
+    <h1>Content</h1>
+  </div>
+</template>
+```
+
+서로 다른 프로젝트 세개가 있다고 가정해보자.
+
+- App (껍데기)
+- Navbar
+- Content
+
+App 에서 Nav, Content 컴포넌트를 불러와 사용하고 싶다.
+
+
+### Module Federation Plugin
+
+// menu
+```js
+// webpack.config.js
+const { ModuleFederationPlugin } = require("webpack").container;
+
+module.exports = {
+  // ...
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "menu",
+      filename: "navEntry.js",
+      exposes: {
+        "./Navbar": "./src/components/Navbar.vue",
+      },
+    }),
+  ],
+};
+```
+
+// content
+```js
+// webpack.config.js
+const { ModuleFederationPlugin } = require("webpack").container;
+
+module.exports = {
+  // ...
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "content",
+      filename: "contentEntry.js",
+      exposes: {
+        "./Content": "./src/components/Content.vue",
+      },
+    }),
+  ],
+};
+```
+- 원격 모듈의 엔트리포인트를 설정해준다
+
+// app1
+```js
+// webpack.config.js
+const { ModuleFederationPlugin } = require("webpack").container;
+
+module.exports = {
+  // ...
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "app1",
+      remotes: {
+        menu: "menu@http://localhost:3002/navEntry.js",
+        content: "content@http://localhost:3003/contentEntry.js",
+      },
+    }),
+  ],
+};
+```
+- 원격 모듈을 등록하여 사용할 수 있도록 App(컨테이너)에서 등록해줘야 사용 할 수 있다.
+
+
+### 리모트 컴포넌트 사용하기
+
+```vue
+<template>
+  <div id="app">
+    <h1>App 1</h1>
+    <button @click="loadRemote">Load Remote</button>
+    <div id="remote">
+      <Navbar />
+      <Content />
+    </div>
+  </div>
+</template>
+
+<script>
+import { defineComponent, defineAsyncComponent } from "vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    Navbar: defineAsyncComponent(() => import("menu/Navbar")),
+    Content: defineAsyncComponent(() => import("content/Content")),
+  },
+});
+</script>
+```
+
+> 위에서 언급했듯이 비동기 작업으로 간주하기 때문에 비동기 컴포넌트로 선언함
+
+
+### Vue CLI
+
+```js
+// vue.config.js
+module.exports = {
+  configureWebpack: {
+    plugins: [
+      new ModuleFederationPlugin({
+        name: "App",
+        remotes: {
+          menu: "menu@http://localhost:3002/navEntry.js",
+          content: "content@http://localhost:3003/contentEntry.js",
+        },
+      }),
+    ],
+  },
+};
+```
+
+
+
+### 느낀점
+> 각 모듈을 각각의 환경에서 개발후 배포를 하기위해 부분적인 빌드만 할 수 있다는 것에 매력을 느끼게 되었다. 공통컴포넌트의 관리를 독립적으로 할 수 있는것에 감명을 느꼈으며 모노레포가 도입되지 않은 서비스라면 점진적으로 도입하는 것을 충분히 고려 해 볼 수 있을것 같다. 다만 shell에서 장애가 났을때 원인을 찾기 업렵고 트러블 슈팅에 대한 레퍼런스를 찾기 쉽지 않다는 점이 큰 단점이 될 수도 있을 것 같다.
+
+
+
+
+### 참고
+> - https://toneyparky.tistory.com/65
+> - https://donggov.tistory.com/196
+> - https://webpack.kr/plugins/module-federation-plugin/

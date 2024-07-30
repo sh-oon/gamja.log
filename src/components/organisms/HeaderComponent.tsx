@@ -14,7 +14,7 @@ function HeaderComponent() {
   const router = useRouter();
 
   return (
-    <header className="flex px-6 md:px-3 w-full fixed z-50 bg-grey-50">
+    <header className="flex px-6 md:px-3 w-full fixed z-50 bg-grey-50 dark:bg-black">
       <div
         className="flex justify-between items-center w-full border-b-2 border-gray-900 h-header dark:bg-black dark:border-white">
         <nav className="flex items-center gap-4 md:gap-2">
