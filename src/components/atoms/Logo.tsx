@@ -26,7 +26,7 @@ interface Props {
 const logoClassName = (size: TSize) => `font-bold text-gray-800 cursor-pointer dark:text-white ${sizes[size]}`
 
 function Logo({ size }: Props) {
-  return <div className={logoClassName(size)}>Gamja-log</div>
+  return <div className={logoClassName(size)}>Gamja.log</div>
 }
 
 export default Logo

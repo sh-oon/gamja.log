@@ -27,10 +27,10 @@ module.exports = {
           0: '#ffffff',
         },
         primary: {
-          main: 'var(--color-primary-main)',
-          surface: 'var(--color-primary-surface)',
-          border: 'var(--color-primary-border)',
-          hover: 'var(--color-primary-hover)',
+          main: '#3b84f1',
+          surface: '#e7f0fd',
+          border: '#89b5f7',
+          hover: '#0968cf',
         },
         secondary: {
           main: '#1185f2',

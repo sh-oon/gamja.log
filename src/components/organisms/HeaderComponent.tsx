@@ -1,4 +1,5 @@
 import { BLOG_LINKS } from '@/constants';
+import { navigation } from '@/constants/navigation';
 import { useDevice } from '@/context/DeviceContext';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -10,10 +11,10 @@ import { GrDocumentUser } from 'react-icons/gr';
 
 function HeaderComponent() {
   const { isDesktop } = useDevice();
-  const router = useRouter()
+  const router = useRouter();
 
   return (
-    <header className="flex px-6 md:px-3 w-full fixed z-50">
+    <header className="flex px-6 md:px-3 w-full fixed z-50 bg-grey-50">
       <div
         className="flex justify-between items-center w-full border-b-2 border-gray-900 h-header dark:bg-black dark:border-white">
         <nav className="flex items-center gap-4 md:gap-2">
@@ -23,18 +24,15 @@ function HeaderComponent() {
           >
             <Logo size={isDesktop ? '3xl' : 'xl'} />
           </Link>
-          <Link
-            href="/post"
-            className={`text-xl relative hover:text-primary-main active:text-primary-main custom-link ${router.pathname.includes('/post') ? 'text-primary-main' : ''}`}
-          >
-            <span className="text-lg">Post</span>
-          </Link>
-          <Link
-            href="/contact"
-            className={`text-xl relative hover:text-primary-main active:text-primary-main custom-link ${router.pathname.includes('/contact') ? 'text-primary-main' : ''}`}
-          >
-            <span className="text-lg">Contact</span>
-          </Link>
+          {navigation.map((nav, index) => (
+            <Link
+              href={nav.link}
+              className={`text-xl relative hover:text-primary-main active:text-primary-main custom-link ${router.pathname.includes(nav.link) ? 'text-primary-main' : ''}`}
+              key={index}
+            >
+              <span className="text-lg">{nav.title}</span>
+            </Link>
+          ))}
         </nav>
         <ul className="flex items-center gap-2">
           <li>
