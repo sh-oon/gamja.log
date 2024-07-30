@@ -1,68 +1,65 @@
 // context/DeviceContext.tsx
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react'
 
 interface DeviceContextProps {
-  isMobile: boolean;
-  isTablet: boolean;
-  isDesktop: boolean;
+  isMobile: boolean
+  isTablet: boolean
+  isDesktop: boolean
 }
 
 const DeviceContext = createContext<DeviceContextProps>({
   isMobile: false,
   isTablet: false,
   isDesktop: true,
-});
+})
 
-export const useDevice = () => useContext(DeviceContext);
+export const useDevice = () => useContext(DeviceContext)
 
 const getDeviceType = (userAgent: string) => {
-  const isMobile = /Mobile|Android|iP(ad|hone|od)|IEMobile|BlackBerry/i.test(userAgent);
-  const isTablet = /Tablet|iPad/i.test(userAgent);
+  const isMobile = /Mobile|Android|iP(ad|hone|od)|IEMobile|BlackBerry/i.test(userAgent)
+  const isTablet = /Tablet|iPad/i.test(userAgent)
   return {
     isMobile,
     isTablet,
     isDesktop: !isMobile && !isTablet,
-  };
-};
+  }
+}
 
 const getDeviceTypeFromWidth = (width: number) => {
-  const isMobile = width < 768;
-  const isTablet = width < 1024;
+  const isMobile = width < 768
+  const isTablet = width < 1024
   return {
     isMobile,
     isTablet,
     isDesktop: !isMobile && !isTablet,
-  };
+  }
 }
 
 interface DeviceProviderProps {
-  userAgent?: string;
-  children: React.ReactNode;
+  userAgent?: string
+  children: React.ReactNode
 }
 
 export const DeviceProvider = ({ userAgent = '', children }: DeviceProviderProps) => {
-  const [device, setDevice] = useState<DeviceContextProps>(getDeviceType(userAgent));
+  const [device, setDevice] = useState<DeviceContextProps>(getDeviceType(userAgent))
 
   useEffect(() => {
     if (!userAgent) {
-      const userAgentString = navigator.userAgent;
-      setDevice(getDeviceType(userAgentString));
+      const userAgentString = navigator.userAgent
+      setDevice(getDeviceType(userAgentString))
     }
-  }, [userAgent]);
+  }, [userAgent])
 
   useEffect(() => {
-    const handleResize = (e) => {
-      setDevice(getDeviceTypeFromWidth(e.target.innerWidth));
-    };
+    const handleResize = (e: Event) => {
+      const target = e.target as Window
+      setDevice(getDeviceTypeFromWidth(target.innerWidth))
+    }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-  return (
-    <DeviceContext.Provider value={device}>
-      {children}
-    </DeviceContext.Provider>
-  );
-};
+  return <DeviceContext.Provider value={device}>{children}</DeviceContext.Provider>
+}
