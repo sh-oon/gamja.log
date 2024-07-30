@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 type TElementPosition = {
   id: string
   top: number
-  tag: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  tag: string
 }
 
 function ToC() {
-  const [elementPosition, setElementPosition] = useState<TElementPosition[]>([]);
+  const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
 
   useEffect(() => {
-    const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || [];
+    const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || []
 
     setElementPosition(
       Array.from(mds || []).map((md) => {
@@ -20,32 +20,32 @@ function ToC() {
           id: md.id,
           tag: md.tagName.toLowerCase(),
           top: md.getBoundingClientRect().top,
-        };
+        }
       }),
-    );
-  }, []);
+    )
+  }, [])
 
   const clickToScroll = (id: string) => {
-    const el = elementPosition.find((el) => el.id === id);
-    if (!el) return;
+    const el = elementPosition.find((el) => el.id === id)
+    if (!el) return
 
-    window.scrollTo({ top: el.top - 120, behavior: 'smooth' });
+    window.scrollTo({ top: el.top - 120, behavior: 'smooth' })
   }
 
   const textSize = (tag: string) => {
     switch (tag) {
       case 'h2':
-        return 'text-lg';
+        return 'text-lg'
       case 'h3':
-        return 'text-base pl-2';
+        return 'text-base pl-2'
       case 'h4':
-        return 'text-sm pl-4';
+        return 'text-sm pl-4'
       case 'h5':
-        return 'text-xs';
+        return 'text-xs'
       case 'h6':
-        return 'text-xs';
+        return 'text-xs'
       default:
-        return 'text-sm';
+        return 'text-sm'
     }
   }
 
@@ -61,12 +61,11 @@ function ToC() {
             >
               {el.id}
             </li>
-          );
+          )
         })}
       </ul>
     </aside>
-  );
+  )
 }
 
-
-export default ToC;
+export default ToC
