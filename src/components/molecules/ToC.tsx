@@ -11,7 +11,7 @@ function ToC() {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([]);
 
   useEffect(() => {
-    const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6');
+    const mds:NodeList = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || [];
 
     setElementPosition(
       Array.from(mds).map((md) => {

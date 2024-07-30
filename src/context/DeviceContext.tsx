@@ -26,6 +26,16 @@ const getDeviceType = (userAgent: string) => {
   };
 };
 
+const getDeviceTypeFromWidth = (width: number) => {
+  const isMobile = width < 768;
+  const isTablet = width < 1024;
+  return {
+    isMobile,
+    isTablet,
+    isDesktop: !isMobile && !isTablet,
+  };
+}
+
 interface DeviceProviderProps {
   userAgent?: string;
   children: React.ReactNode;
@@ -42,8 +52,8 @@ export const DeviceProvider = ({ userAgent = '', children }: DeviceProviderProps
   }, [userAgent]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setDevice(getDeviceType(navigator.userAgent));
+    const handleResize = (e) => {
+      setDevice(getDeviceTypeFromWidth(e.target.innerWidth));
     };
 
     window.addEventListener('resize', handleResize);
