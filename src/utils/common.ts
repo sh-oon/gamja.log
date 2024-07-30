@@ -1,7 +1,7 @@
 export const uniqueTags = (arr: string[][]): string[] => {
   const tags = arr.flat();
   return [...new Set(tags)];
-}
+};
 
 
 /**
@@ -10,6 +10,16 @@ export const uniqueTags = (arr: string[][]): string[] => {
  * @param format
  * @param defaultValue
  */
+export type DateFormat =
+  'YYYY-MM-DD'
+  | 'YYYY-MM-DD hh:mm:ss'
+  | 'YY-MM-DD'
+  | 'YY-MM-DD hh:mm:ss'
+  | 'MM-DD'
+  | 'MM-DD hh:mm:ss'
+  | 'kr'
+  | 'YYMMDD';
+
 export function formatDate(date: string | number | Date, format: DateFormat, defaultValue: string = ''): string {
   if (!date) return defaultValue;
   date = new Date(date);
@@ -27,6 +37,7 @@ export function formatDate(date: string | number | Date, format: DateFormat, def
   if (format === 'YYYY-MM-DD') return `${yearFull}-${month}-${day}`;
   if (format === 'YYYY-MM-DD hh:mm:ss') return `${yearFull}-${month}-${day} ${hour}:${minute}:${second}`;
   if (format === 'YY-MM-DD') return `${year}-${month}-${day}`;
+  if (format === 'YYMMDD') return `${year}${month}${day}`;
   if (format === 'YY-MM-DD hh:mm:ss') return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
   if (format === 'MM-DD') return `${month}-${day}`;
   if (format === 'MM-DD hh:mm:ss') return `${month}-${day} ${hour}:${minute}:${second}`;

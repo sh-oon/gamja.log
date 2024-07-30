@@ -29,7 +29,7 @@ function ArticleTagsCard({ tags, selectHandler }: Props) {
           <label
             htmlFor={tag}
             key={index}
-            className={`flex w-fit h-fit items-center dark:text-white rounded-full px-2 py-1 md:p-1 font-semibold transition-all hover:opacity-50 dark:border-white dark:hover:bg-[#ffffff88] ${checkedTags.includes(tag) ? 'bg-blue-500 text-white' : 'text-blue-500'} cursor-pointer`}
+            className={`flex w-fit h-fit items-center dark:text-white dark:bg-grey-700 rounded-full px-2 py-1 md:p-1 font-semibold transition-all hover:opacity-50 dark:border-white dark:hover:bg-[#ffffff88] ${checkedTags.includes(tag) ? '!bg-blue-500 text-white' : 'text-blue-500'} cursor-pointer`}
           >
             <input
               type={'checkbox'}
