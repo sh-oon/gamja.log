@@ -13,7 +13,7 @@ function ArticleCard({ post }: Props) {
   return (
     <Link
       className="p-4 md:p-2 border border-grey-900 dark:border-white dark:hover:bg-grey-800 hover:bg-grey-200 flex flex-col justify-between"
-      href={`/post/${post.link}`}
+      href={`/posts/${post.link}`}
     >
       <Image
         src={post.coverImage}
