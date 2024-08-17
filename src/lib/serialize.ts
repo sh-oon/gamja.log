@@ -7,6 +7,7 @@ import rehypeCode from 'rehype-pretty-code';
 import { getShikiHighlighter } from '@/lib/shiki';
 
 const articleDir = join(process.cwd(), '_articles')
+const careerDir = join(process.cwd(), '_careers')
 
 export async function getPostSlugs(page = 1, perPage = 10): Promise<string[]> {
   const files = await fs.readdir(articleDir)
@@ -18,7 +19,7 @@ export async function getPostSlugs(page = 1, perPage = 10): Promise<string[]> {
 }
 
 const getPostRawSourceBySlug = async (slug: string) => {
-  const fullPath = join(articleDir, `${slug}.mdx`)
+  const fullPath = join(slug === 'careers' ? careerDir : articleDir, `${slug}.mdx`)
   return await fs.readFile(fullPath, 'utf8')
 }
 

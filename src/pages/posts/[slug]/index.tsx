@@ -1,4 +1,3 @@
-import ToC from '@/components/molecules/ToC';
 import { Markdown } from '@/components/organisms/Markdown';
 import MarkdownHeader from '@/components/organisms/MarkdownHeader';
 import { useDevice } from '@/context/DeviceContext';
@@ -38,11 +37,9 @@ export default function ArticlePage({ articleSource }: Props) {
       <div className="flex flex-col items-center">
         <div className="w-[65rem] max-w-full flex flex-col pt-[3rem] gap-y-4 mb-16">
           <MarkdownHeader post={post} />
+          <Markdown source={articleSource} />
         </div>
-            <Markdown source={articleSource} />
-
       </div>
-
     </article>
   );
 }
