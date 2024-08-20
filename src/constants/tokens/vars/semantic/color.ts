@@ -28,6 +28,7 @@ export const text = {
 export const background = {
   white: 'var(--color-background-white)',
   dark: 'var(--color-background-dark)',
+  blockquote: 'var(--color-background-blockquote)',
 };
 
 export const fill = {

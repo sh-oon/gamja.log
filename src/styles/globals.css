@@ -119,6 +119,7 @@
   /* Background Colors */
   --color-background-white: #ffffff;
   --color-background-dark: #000;
+  --color-background-blockquote: #f3f3f3;
 
 
   /* Fill Colors */
@@ -174,19 +175,19 @@
   --typography-title-xxl-font-weight: var(--font-weight-normal);
   --typography-title-xxl-letter-spacing: var(--letter-spacing-0);
   --typography-title-xxl-line-height: var(--line-height-3);
-  --typography-title-xxl-font-size: var(--font-size-550);
+  --typography-title-xxl-font-size: var(--font-size-1000);
 
   --typography-title-xxl-bold-font-family: var(--font-family-body);
   --typography-title-xxl-bold-font-weight: var(--font-weight-bold);
   --typography-title-xxl-bold-letter-spacing: var(--letter-spacing-0);
   --typography-title-xxl-bold-line-height: var(--line-height-3);
-  --typography-title-xxl-bold-font-size: var(--font-size-550);
+  --typography-title-xxl-bold-font-size: var(--font-size-1000);
 
   --typography-title-xxl-medium-font-family: var(--font-family-body);
   --typography-title-xxl-medium-font-weight: var(--font-weight-medium);
   --typography-title-xxl-medium-letter-spacing: var(--letter-spacing-0);
   --typography-title-xxl-medium-line-height: var(--line-height-3);
-  --typography-title-xxl-medium-font-size: var(--font-size-550);
+  --typography-title-xxl-medium-font-size: var(--font-size-1000);
 
   --typography-title-xl-bold-font-family: var(--font-family-body);
   --typography-title-xl-bold-font-weight: var(--font-weight-bold);

@@ -1,11 +1,13 @@
 import { TextProps } from '@/components/atoms/text/text.types'
 import styled from '@emotion/styled'
 import { forwardRef } from 'react'
+import { vars } from '@ui-tokens'
 
 export const Text = forwardRef<HTMLElement, TextProps>(
-  ({ className, as, color, typography, children, lineLimit, align }, ref) => (
+  ({ id, className, as, color, typography, children, lineLimit, align }, ref) => (
     <StyledText
       ref={ref}
+      id={id}
       className={className}
       as={as}
       color={color}
@@ -16,9 +18,9 @@ export const Text = forwardRef<HTMLElement, TextProps>(
       {children}
     </StyledText>
   ),
-);
+)
 
-Text.displayName = 'Text';
+Text.displayName = 'Text'
 
 
 const StyledText = styled.span<
@@ -31,8 +33,8 @@ const StyledText = styled.span<
   text-align: ${({ align }) => align};
 
   ${({ lineLimit }) =>
-  lineLimit &&
-  `
+    lineLimit &&
+    `
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -40,4 +42,4 @@ const StyledText = styled.span<
     -webkit-box-orient: vertical;
     word-break: break-all;
   `};
-`;
+`

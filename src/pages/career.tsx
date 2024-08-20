@@ -1,21 +1,21 @@
-import { Markdown } from '@/components/organisms/Markdown';
-import { BLOG_LINKS } from '@/constants';
-import { getPostSourceBySlug } from '@/lib/serialize';
-import { TArticle } from '@/types/common';
-import { GetServerSideProps } from 'next';
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
+import { Markdown } from '@/components/organisms/Markdown'
+import { BLOG_LINKS } from '@/constants'
+import { getPostSourceBySlug } from '@/lib/serialize'
+import { TArticle } from '@/types/common'
+import { GetServerSideProps } from 'next'
+import Link from 'next/link'
+import React from 'react'
+import Image from 'next/image'
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const articleSource = await getPostSourceBySlug('careers');
+  const articleSource = await getPostSourceBySlug('careers')
 
   return {
     props: {
       articleSource,
     },
-  };
-};
+  }
+}
 
 type Props = {
   articleSource: {
@@ -37,7 +37,7 @@ const styles = {
   list: 'flex flex-col gap-2 py-4',
   listItem: 'text-lg',
   introduce: 'flex flex-col gap-4',
-};
+}
 
 const career = ({ articleSource }: Props) => {
 
@@ -91,7 +91,7 @@ const career = ({ articleSource }: Props) => {
         <Markdown source={articleSource} />
       </section>
     </>
-  );
-};
+  )
+}
 
-export default career;
+export default career
