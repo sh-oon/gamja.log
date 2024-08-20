@@ -14,6 +14,8 @@ type Props = {
 }
 
 export const Markdown = ({ source }: Props) => {
+
+  console.log(source)
   return (
     <StyledMarkdownContainer>
       <div>

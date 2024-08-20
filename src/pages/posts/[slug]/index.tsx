@@ -10,8 +10,8 @@ type Props = {
   articleSource: {
     post: TArticle
     compiledSource: string
-    scope: Record<string, unknown>
-    frontmatter: Record<string, unknown>
+    scope: Record<string>
+    frontmatter: Record<string>
   }
 }
 
@@ -31,7 +31,6 @@ export default function ArticlePage({ articleSource }: Props) {
 
   const { isMobile } = useDevice();
 
-  console.log(post);
   return (
     <article className="p-3">
       <div className="flex flex-col items-center">

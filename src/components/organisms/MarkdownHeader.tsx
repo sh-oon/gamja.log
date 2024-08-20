@@ -7,8 +7,6 @@ type Props = {
 }
 
 function MarkdownHeader({ post }: Props) {
-  console.log(post)
-
   return (
     <div className='flex flex-col gap-6'>
       <h1 className='text-6xl font-medium leading-tight tracking-tighter break-keep md:leading-none text-start'>
