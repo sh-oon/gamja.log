@@ -16,7 +16,7 @@ export const Markdown = ({ source }: Props) => {
   return (
     <div className="relative flex w-full gap-4">
       <div className="w-[65rem] md:w-full max-w-full flex-shrink-0">
-        <article id="markdown" className="relative flex flex-col w-full pb-20 leading-loose gap-y-6 md:text-sm">
+        <article id="markdown" className="relative flex flex-col w-full pb-20 leading-loose gap-y-6 md:text-md">
           {source.frontmatter.coverImage && (
             <Image
               src={(source.frontmatter.coverImage as string) ?? ''}
@@ -31,6 +31,11 @@ export const Markdown = ({ source }: Props) => {
             {...source}
             components={{
               // Headings
+              h1: ({ children }) => (
+                <h1 id={children?.toString()} className="pt-12 text-4xl font-bold">
+                  {children}
+                </h1>
+              ),
               h2: ({ children }) => (
                 <h2 id={children?.toString()} className="pt-10 text-3xl font-bold">
                   {children}

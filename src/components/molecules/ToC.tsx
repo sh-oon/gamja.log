@@ -35,6 +35,8 @@ function ToC() {
 
   const textSize = (tag: string) => {
     switch (tag) {
+      case 'h1':
+        return 'text-xl'
       case 'h2':
         return 'text-lg'
       case 'h3':
