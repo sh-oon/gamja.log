@@ -4,10 +4,6 @@ export type TArticle = {
   link: string;
   date: string;
   coverImage: string;
-  excerpt: string;
-  ogImage: {
-    url: string;
-  };
-  content: string;
+  ogImage: string;
   tags: string[];
 };

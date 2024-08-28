@@ -42,6 +42,7 @@ export const fill = {
 };
 
 export const border = {
+  line: 'var(--color-border-line)',
   dividerStrong: 'var(--color-neutral-100)',
   divider: 'var(--color-neutral-12)',
   error: 'var(--color-border-error)',

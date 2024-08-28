@@ -16,9 +16,7 @@ export const Header = () => {
   const router = useRouter();
 
   return (
-    <StyledHeaderContainer
-      isCurrentPage={router.pathname === '/'}
-    >
+    <StyledHeaderContainer>
       <div className="header-container">
         <nav>
           <Link href="/">
@@ -48,7 +46,7 @@ export const Header = () => {
                   <GoLinkExternal />
                 </div>
               )}
-              {isDesktop ? <Text typography={'title-xxs-bold'}>GitHub</Text> : <FaGithub size={24} />}
+              {isDesktop ? <Text typography={'title-xs-bold'}>GitHub</Text> : <FaGithub size={24} />}
               </>
             </Link>
           </li>
@@ -168,36 +166,6 @@ const StyledHeaderContainer = styled.header`
       padding-left: 4px;
       border: none !important;
     }
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    background-color: ${vars.$semantic.color.background.dark};
-  
-    & .header-container {
-      border-bottom: 2px solid ${vars.$semantic.color.border.line};
-      background-color: ${vars.$semantic.color.background.dark};
-    }
-    
-    & .nav-link {
-      color: ${vars.$semantic.color.text.primary};
-    }
-    
-    & .nav-link:hover {
-      color: ${vars.$semantic.color.text.primaryHover};
-    }
-    
-    & .nav-link:active {
-      color: ${vars.$semantic.color.text.primaryPressed};
-    }
-    
-    & .external-link {
-      color: ${vars.$semantic.color.text.primary};
-      border: 1px solid ${vars.$semantic.color.border.line};
-    }
-    
-    & .external-link:hover {
-      opacity: 0.5;
-      }
   }
 `;
 

@@ -2,17 +2,11 @@ import { Markdown } from '@/components/organisms/Markdown';
 import MarkdownHeader from '@/components/organisms/MarkdownHeader';
 import { useDevice } from '@/context/DeviceContext';
 import { getPostSourceBySlug } from '@/lib/serialize';
-import { TArticle } from '@/types/common';
 import { GetServerSideProps } from 'next';
 import React from 'react';
 
 type Props = {
-  articleSource: {
-    post: TArticle
-    compiledSource: string
-    scope: Record<string>
-    frontmatter: Record<string>
-  }
+  articleSource: Awaited<ReturnType<typeof getPostSourceBySlug>>
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -27,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function ArticlePage({ articleSource }: Props) {
-  const post = articleSource.post;
+  const post = articleSource.frontmatter;
 
   const { isMobile } = useDevice();
 

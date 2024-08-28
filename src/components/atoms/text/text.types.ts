@@ -9,7 +9,7 @@ export type TextProps = PropsWithChildren<{
   id?: string;
   className?: string;
   as?: ElementType;
-  color: ColorType;
+  color?: ColorType;
   typography: TypographyType;
   lineLimit?: number;
   align?: 'left' | 'center' | 'right';

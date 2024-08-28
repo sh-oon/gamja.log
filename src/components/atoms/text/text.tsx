@@ -4,7 +4,7 @@ import { forwardRef } from 'react'
 import { vars } from '@ui-tokens'
 
 export const Text = forwardRef<HTMLElement, TextProps>(
-  ({ id, className, as, color, typography, children, lineLimit, align }, ref) => (
+  ({ id, className, as, color = 'primary', typography, children, lineLimit, align }, ref) => (
     <StyledText
       ref={ref}
       id={id}
@@ -42,4 +42,8 @@ const StyledText = styled.span<
     -webkit-box-orient: vertical;
     word-break: break-all;
   `};
+  
+  @media (prefers-color-scheme: dark) {
+    color: ${({ color }) => vars.$semantic.color.text[color]};
+  }
 `

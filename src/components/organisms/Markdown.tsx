@@ -15,14 +15,13 @@ type Props = {
 
 export const Markdown = ({ source }: Props) => {
 
-  console.log(source)
   return (
     <StyledMarkdownContainer>
       <div>
         <article id="markdown">
-          {source.frontmatter.coverImage && (
+          {(typeof source.frontmatter.coverImage === 'string') && (
             <Image
-              src={(source.frontmatter.coverImage as string) ?? ''}
+              src={source.frontmatter.coverImage}
               alt={(source.frontmatter.title as string) ?? ''}
               width={1200}
               height={600}
@@ -30,6 +29,7 @@ export const Markdown = ({ source }: Props) => {
               priority
             />
           )}
+
           <MDXRemote
             {...source}
             components={{
@@ -71,7 +71,7 @@ export const Markdown = ({ source }: Props) => {
               // Link
               a: ({ children, href }) => (
                 <Link
-                  href={href}
+                  href={href as string}
                   className="link"
                   target="_blank"
                 >

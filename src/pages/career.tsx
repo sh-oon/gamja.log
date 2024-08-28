@@ -1,7 +1,6 @@
 import { Markdown } from '@/components/organisms/Markdown'
 import { BLOG_LINKS } from '@/constants'
 import { getPostSourceBySlug } from '@/lib/serialize'
-import { TArticle } from '@/types/common'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import React from 'react'
@@ -18,12 +17,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 type Props = {
-  articleSource: {
-    post: TArticle
-    compiledSource: string
-    scope: Record<string, unknown>
-    frontmatter: Record<string, unknown>
-  }
+  articleSource: Awaited<ReturnType<typeof getPostSourceBySlug>>
 }
 
 const styles = {
