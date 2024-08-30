@@ -87,3 +87,359 @@
     }
   }
 }
+
+:root {
+  /* Height */
+  --height-header: 80px;
+
+  /* Padding */
+  --padding-header: 80px;
+
+  /* Colors */
+  --color-neutral-100: #111;
+  --color-neutral-90: #333;
+  --color-neutral-80: #555;
+  --color-neutral-70: #777;
+  --color-neutral-60: #999;
+  --color-neutral-50: #888;
+  --color-neutral-34: #aeaeae;
+  --color-neutral-20: #cfcfcf;
+  --color-neutral-12: #e2e2e2;
+  --color-neutral-6: #f1f1f1;
+  --color-neutral-3: #f8f8f8;
+  --color-neutral-0: #ffffff;
+
+  --color-text-interactive: #0070f3;
+  --color-text-interactive-hover: #0366d6;
+  --color-text-interactive-pressed: #0366d6;
+
+  --color-text-error: #ff3b30;
+  --color-text-warning: #f79009;
+  --color-text-success: #12b76a;
+  /* Background Colors */
+  --color-background-white: #ffffff;
+  --color-background-dark: #000;
+  --color-background-blockquote: #f3f3f3;
+
+
+  /* Fill Colors */
+  --color-fill-error: #ffebea;
+  --color-fill-warning: #fffaeb;
+  --color-fill-success: #ebfaee;
+
+  /* Border Colors */
+  --color-border-line: var(--color-neutral-100);
+  --color-border-error: #fda29b;
+  --color-border-warning: #fec84b;
+  --color-border-success: #6ce9a6;
+
+
+  /* Font Family */
+  --font-family-body: 'Pretendard GOV Variable', sans-serif;
+
+  /* Font Sizes */
+  --font-size-25: 10px;
+  --font-size-50: 11px;
+  --font-size-75: 12px;
+  --font-size-100: 13px;
+  --font-size-125: 14px;
+  --font-size-150: 15px;
+  --font-size-200: 16px;
+  --font-size-250: 18px;
+  --font-size-300: 20px;
+  --font-size-350: 22px;
+  --font-size-400: 24px;
+  --font-size-500: 28px;
+  --font-size-550: 30px;
+  --font-size-600: 32px;
+  --font-size-1000: 48px;
+  
+  /* Line Height */
+  --line-height-1: 100%;
+  --line-height-2: 120%;
+  --line-height-3: 136%;
+  --line-height-4: 140%;
+  --line-height-5: 150%;
+  --line-height-6: 160%;
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* letter spacing */
+  --letter-spacing-0: 0;
+  
+  /* typography */
+  --typography-title-xxl-font-family: var(--font-family-body);
+  --typography-title-xxl-font-weight: var(--font-weight-normal);
+  --typography-title-xxl-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xxl-line-height: var(--line-height-3);
+  --typography-title-xxl-font-size: var(--font-size-1000);
+
+  --typography-title-xxl-bold-font-family: var(--font-family-body);
+  --typography-title-xxl-bold-font-weight: var(--font-weight-bold);
+  --typography-title-xxl-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xxl-bold-line-height: var(--line-height-3);
+  --typography-title-xxl-bold-font-size: var(--font-size-1000);
+
+  --typography-title-xxl-medium-font-family: var(--font-family-body);
+  --typography-title-xxl-medium-font-weight: var(--font-weight-medium);
+  --typography-title-xxl-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xxl-medium-line-height: var(--line-height-3);
+  --typography-title-xxl-medium-font-size: var(--font-size-1000);
+
+  --typography-title-xl-bold-font-family: var(--font-family-body);
+  --typography-title-xl-bold-font-weight: var(--font-weight-bold);
+  --typography-title-xl-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xl-bold-line-height: var(--line-height-3);
+  --typography-title-xl-bold-font-size: var(--font-size-500);
+
+  --typography-title-xl-medium-font-family: var(--font-family-body);
+  --typography-title-xl-medium-font-weight: var(--font-weight-medium);
+  --typography-title-xl-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xl-medium-line-height: var(--line-height-3);
+  --typography-title-xl-medium-font-size: var(--font-size-500);
+
+  --typography-title-l-bold-font-family: var(--font-family-body);
+  --typography-title-l-bold-font-weight: var(--font-weight-bold);
+  --typography-title-l-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-title-l-bold-line-height: var(--line-height-3);
+  --typography-title-l-bold-font-size: var(--font-size-400);
+
+  --typography-title-l-medium-font-family: var(--font-family-body);
+  --typography-title-l-medium-font-weight: var(--font-weight-medium);
+  --typography-title-l-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-title-l-medium-line-height: var(--line-height-3);
+  --typography-title-l-medium-font-size: var(--font-size-400);
+
+  --typography-title-m-bold-font-family: var(--font-family-body);
+  --typography-title-m-bold-font-weight: var(--font-weight-bold);
+  --typography-title-m-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-title-m-bold-line-height: var(--line-height-3);
+  --typography-title-m-bold-font-size: var(--font-size-350);
+
+  --typography-title-m-medium-font-family: var(--font-family-body);
+  --typography-title-m-medium-font-weight: var(--font-weight-medium);
+  --typography-title-m-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-title-m-medium-line-height: var(--line-height-3);
+  --typography-title-m-medium-font-size: var(--font-size-350);
+
+  --typography-title-s-bold-font-family: var(--font-family-body);
+  --typography-title-s-bold-font-weight: var(--font-weight-bold);
+  --typography-title-s-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-title-s-bold-line-height: var(--line-height-3);
+  --typography-title-s-bold-font-size: var(--font-size-300);
+
+  --typography-title-s-medium-font-family: var(--font-family-body);
+  --typography-title-s-medium-font-weight: var(--font-weight-medium);
+  --typography-title-s-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-title-s-medium-line-height: var(--line-height-3);
+  --typography-title-s-medium-font-size: var(--font-size-300);
+
+  --typography-title-xs-bold-font-family: var(--font-family-body);
+  --typography-title-xs-bold-font-weight: var(--font-weight-bold);
+  --typography-title-xs-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xs-bold-line-height: var(--line-height-3);
+  --typography-title-xs-bold-font-size: var(--font-size-250);
+
+  --typography-title-xs-medium-font-family: var(--font-family-body);
+  --typography-title-xs-medium-font-weight: var(--font-weight-medium);
+  --typography-title-xs-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-title-xs-medium-line-height: var(--line-height-3);
+  --typography-title-xs-medium-font-size: var(--font-size-250);
+
+  --typography-text-xxl-font-family: var(--font-family-body);
+  --typography-text-xxl-font-weight: var(--font-weight-normal);
+  --typography-text-xxl-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xxl-line-height: var(--line-height-4);
+  --typography-text-xxl-font-size: var(--font-size-200);
+
+  --typography-text-xxl-bold-font-family: var(--font-family-body);
+  --typography-text-xxl-bold-font-weight: var(--font-weight-bold);
+  --typography-text-xxl-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xxl-bold-line-height: var(--line-height-4);
+  --typography-text-xxl-bold-font-size: var(--font-size-200);
+
+  --typography-text-xxl-medium-font-family: var(--font-family-body);
+  --typography-text-xxl-medium-font-weight: var(--font-weight-medium);
+  --typography-text-xxl-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xxl-medium-line-height: var(--line-height-4);
+  --typography-text-xxl-medium-font-size: var(--font-size-200);
+
+  --typography-text-xl-bold-font-family: var(--font-family-body);
+  --typography-text-xl-bold-font-weight: var(--font-weight-bold);
+  --typography-text-xl-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xl-bold-line-height: var(--line-height-5);
+  --typography-text-xl-bold-font-size: var(--font-size-150);
+
+  --typography-text-xl-medium-font-family: var(--font-family-body);
+  --typography-text-xl-medium-font-weight: var(--font-weight-medium);
+  --typography-text-xl-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xl-medium-line-height: var(--line-height-5);
+  --typography-text-xl-medium-font-size: var(--font-size-150);
+
+  --typography-text-xl-font-family: var(--font-family-body);
+  --typography-text-xl-font-weight: var(--font-weight-normal);
+  --typography-text-xl-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xl-line-height: var(--line-height-5);
+  --typography-text-xl-font-size: var(--font-size-150);
+
+  --typography-text-l-bold-font-family: var(--font-family-body);
+  --typography-text-l-bold-font-weight: var(--font-weight-bold);
+  --typography-text-l-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-text-l-bold-line-height: var(--line-height-4);
+  --typography-text-l-bold-font-size: var(--font-size-125);
+
+  --typography-text-l-medium-font-family: var(--font-family-body);
+  --typography-text-l-medium-font-weight: var(--font-weight-medium);
+  --typography-text-l-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-l-medium-line-height: var(--line-height-4);
+  --typography-text-l-medium-font-size: var(--font-size-125);
+
+  --typography-text-l-font-family: var(--font-family-body);
+  --typography-text-l-font-weight: var(--font-weight-normal);
+  --typography-text-l-letter-spacing: var(--letter-spacing-0);
+  --typography-text-l-line-height: var(--line-height-4);
+  --typography-text-l-font-size: var(--font-size-125);
+
+  --typography-text-m-bold-font-family: var(--font-family-body);
+  --typography-text-m-bold-font-weight: var(--font-weight-bold);
+  --typography-text-m-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-text-m-bold-line-height: var(--line-height-4);
+  --typography-text-m-bold-font-size: var(--font-size-100);
+
+  --typography-text-m-medium-font-family: var(--font-family-body);
+  --typography-text-m-medium-font-weight: var(--font-weight-medium);
+  --typography-text-m-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-m-medium-line-height: var(--line-height-4);
+  --typography-text-m-medium-font-size: var(--font-size-100);
+
+  --typography-text-m-font-family: var(--font-family-body);
+  --typography-text-m-font-weight: var(--font-weight-normal);
+  --typography-text-m-letter-spacing: var(--letter-spacing-0);
+  --typography-text-m-line-height: var(--line-height-4);
+  --typography-text-m-font-size: var(--font-size-100);
+
+  --typography-text-s-font-family: var(--font-family-body);
+  --typography-text-s-font-weight: var(--font-weight-normal);
+  --typography-text-s-letter-spacing: var(--letter-spacing-0);
+  --typography-text-s-line-height: var(--line-height-3);
+  --typography-text-s-font-size: var(--font-size-75);
+
+  --typography-text-s-bold-font-family: var(--font-family-body);
+  --typography-text-s-bold-font-weight: var(--font-weight-bold);
+  --typography-text-s-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-text-s-bold-line-height: var(--line-height-3);
+  --typography-text-s-bold-font-size: var(--font-size-75);
+
+  --typography-text-s-medium-font-family: var(--font-family-body);
+  --typography-text-s-medium-font-weight: var(--font-weight-medium);
+  --typography-text-s-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-s-medium-line-height: var(--line-height-3);
+  --typography-text-s-medium-font-size: var(--font-size-75);
+
+  --typography-text-xs-font-family: var(--font-family-body);
+  --typography-text-xs-font-weight: var(--font-weight-normal);
+  --typography-text-xs-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xs-line-height: var(--line-height-3);
+  --typography-text-xs-font-size: var(--font-size-50);
+
+  --typography-text-xs-bold-font-family: var(--font-family-body);
+  --typography-text-xs-bold-font-weight: var(--font-weight-bold);
+  --typography-text-xs-bold-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xs-bold-line-height: var(--line-height-3);
+  --typography-text-xs-bold-font-size: var(--font-size-50);
+
+  --typography-text-xs-medium-font-family: var(--font-family-body);
+  --typography-text-xs-medium-font-weight: var(--font-weight-medium);
+  --typography-text-xs-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xs-medium-line-height: var(--line-height-3);
+  --typography-text-xs-medium-font-size: var(--font-size-50);
+
+  --typography-text-xxs-font-family: var(--font-family-body);
+  --typography-text-xxs-font-weight: var(--font-weight-normal);
+  --typography-text-xxs-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xxs-line-height: var(--line-height-2);
+  --typography-text-xxs-font-size: var(--font-size-25);
+
+  --typography-text-xxs-medium-font-family: var(--font-family-body);
+  --typography-text-xxs-medium-font-weight: var(--font-weight-medium);
+  --typography-text-xxs-medium-letter-spacing: var(--letter-spacing-0);
+  --typography-text-xxs-medium-line-height: var(--line-height-2);
+  --typography-text-xxs-medium-font-size: var(--font-size-25);
+
+  /* Keyframes */
+  @keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes slideDown {
+    from { height: 0; overflow: hidden; }
+    to { height: 52px; overflow: visible; }
+  }
+  @keyframes slideUp {
+    from { height: 52px; overflow: hidden; }
+    to { height: 0; overflow: hidden; }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Animations */
+  --animation-rotation: rotation 1s linear infinite;
+  --animation-slideDown: slideDown 0.5s ease-in-out;
+  --animation-slideUp: slideUp 0.5s ease-in-out;
+  --animation-fadeDown: fadeDown 0.5s ease-in-out;
+
+  /* Breakpoints */
+  --screen-2xl-max: 1535px;
+  --screen-xl-max: 1279px;
+  --screen-lg-max: 1023px;
+  --screen-md-max: 767px;
+  --screen-sm-max: 639px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-neutral-100: #ffffff;
+    --color-neutral-90: #f8f8f8;
+    --color-neutral-80: #f1f1f1;
+    --color-neutral-70: #e2e2e2;
+    --color-neutral-60: #cfcfcf;
+    --color-neutral-50: #888;
+    --color-neutral-34: #aeaeae;
+    --color-neutral-20: #555;
+    --color-neutral-12: #333;
+    --color-neutral-6: #111;
+    --color-neutral-3: #000;
+    --color-neutral-0: #000;
+
+    --color-text-interactive: #0070f3;
+    --color-text-interactive-hover: #0366d6;
+    --color-text-interactive-pressed: #0366d6;
+
+    --color-text-error: #ff3b30;
+    --color-text-warning: #f79009;
+    --color-text-success: #12b76a;
+
+    /* Background Colors */
+    --color-background-white: #000;
+    --color-background-dark: #fff;
+    --color-background-blockquote: #111;
+
+    /* Fill Colors */
+    --color-fill-error: #ff3b30;
+    --color-fill-warning: #f79009;
+    --color-fill-success: #12b76a;
+
+    /* Border Colors */
+    --color-border-line: var(--color-neutral-20);
+    --color-border-error: #fda29b;
+    --color-border-warning: #fec84b;
+    --color-border-success: #6ce9a6;
+  }
+}
+

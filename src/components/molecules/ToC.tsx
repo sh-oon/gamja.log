@@ -19,7 +19,7 @@ function ToC() {
         return {
           id: md.id,
           tag: md.tagName.toLowerCase(),
-          top: md.getBoundingClientRect().top,
+          top: md.getBoundingClientRect().top + window.scrollY,
         }
       }),
     )
@@ -28,12 +28,15 @@ function ToC() {
   const clickToScroll = (id: string) => {
     const el = elementPosition.find((el) => el.id === id)
     if (!el) return
+    console.log(elementPosition, window.scrollY);
 
-    window.scrollTo({ top: el.top - 120, behavior: 'smooth' })
+    window.scrollTo({ top: el.top - 100 , behavior: 'smooth' })
   }
 
   const textSize = (tag: string) => {
     switch (tag) {
+      case 'h1':
+        return 'text-xl'
       case 'h2':
         return 'text-lg'
       case 'h3':
@@ -50,7 +53,7 @@ function ToC() {
   }
 
   return (
-    <aside className='sticky flex-1 w-fit top-[120px] left-full h-full'>
+    <aside className='sticky flex-1 flex-shrink-0 w-fit top-[120px] left-full h-full'>
       <ul className='flex flex-col'>
         {elementPosition.map((el) => {
           return (

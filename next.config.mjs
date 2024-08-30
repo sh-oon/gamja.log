@@ -25,13 +25,6 @@ const nextConfig = {
       }
     ]
   },
-  async rewrites() {
-    return {
-      beforeFiles: [
-
-      ],
-    }
-  },
 }
 
 export default nextConfig
