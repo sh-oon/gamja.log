@@ -10,7 +10,7 @@ type Props = {
   posts: TArticle[],
 }
 
-function PostTemplate({ posts }: Props) {
+function Posts({ posts }: Props) {
   const [filteredPosts, setFilteredPosts] = useState<TArticle[]>(posts);
   const { isMobile } = useDevice();
 
@@ -37,4 +37,4 @@ function PostTemplate({ posts }: Props) {
 }
 
 
-export default PostTemplate;
+export default Posts;

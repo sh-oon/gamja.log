@@ -114,7 +114,7 @@ const StyledMarkdownContainer = styled.div`
 
   & .thumbnail {
     width: 80%;
-    margin: auto auto 5rem;
+    margin: 5rem auto;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
@@ -132,7 +132,7 @@ const StyledMarkdownContainer = styled.div`
     width: 100%;
     padding-bottom: 5rem;
     line-height: 2;
-    row-gap: 1.5rem;
+    row-gap: .5rem;
   }
 
   & img {

@@ -8,8 +8,8 @@ export const text = {
   secondaryPressed: 'var(--color-neutral-60)',
 
   tertiary: 'var(--color-neutral-60)',
-  tertiaryHover: 'var(--color-neutral-34)',
-  tertiaryPressed: 'var(--color-neutral-34)',
+  tertiaryHover: 'var(--color-neutral-20)',
+  tertiaryPressed: 'var(--color-neutral-20)',
 
   interactive: 'var(--color-text-interactive)',
   interactiveHover: 'var(--color-text-interactive-hover)',
