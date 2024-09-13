@@ -32,10 +32,9 @@ export default function ArticlePage({ articleSource }: Props) {
       <div className="md-container">
         <MarkdownHeader post={post} />
         <div className="md-contents-container">
-          <ToC />
+          {!isMobile && (<ToC />)}
           <Markdown
             source={articleSource}
-            withToc={!isMobile}
           />
         </div>
       </div>
