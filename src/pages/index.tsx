@@ -9,7 +9,6 @@ import React from 'react'
 import Image from 'next/image'
 import { Text } from '@/components/atoms'
 import { vars } from '@ui-tokens'
-import Head from 'next/head'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const articleSource = await getPostSourceBySlug('careers')
@@ -44,7 +43,7 @@ const home = ({ articleSource }: Props) => {
             <div className="profile-contents">
               <div>
                 <Text as={'h2'} typography={'title-xl-bold'}>Frontend Developer</Text>
-                <Text as={'p'} typography={'title-xxs-medium'}>Vue, React, Next.js, TypeScript</Text>
+                <Text as={'p'} typography={'title-xs-medium'}>Vue, React, Next.js, TypeScript</Text>
               </div>
               <div>
                 <Text as={'h3'} typography={'title-l-bold'}>Contact</Text>
