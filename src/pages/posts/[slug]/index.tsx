@@ -52,4 +52,10 @@ const StyledArticlePage = styled.article`
     gap: 2rem;
     position: relative;
   }
+  
+  @media (max-width: 768px) {
+    & .md-contents-container {
+      grid-template-columns: 1fr;
+    }
+  }
 `

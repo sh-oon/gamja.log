@@ -1,6 +1,5 @@
 'use client'
 
-import { ToC } from '@/components/molecules/ToC'
 import styled from '@emotion/styled'
 import Image from 'next/image'
 import { Text } from '@/components/atoms'
@@ -208,22 +207,32 @@ const StyledMarkdownContainer = styled.div`
   
   
   @media (max-width: 768px) {
+    & #markdown {
+      padding: 0 1rem;
+      width: 100%;
+      max-width: none;
+    }
+    
+    & .thumbnail {
+      width: 100%;
+      margin: 2rem auto;
+    }
+    
     & > div {
       width: 100%;
     }
   }
   
   @media (prefers-color-scheme: dark) {
-    blockquote {
+    & blockquote {
       background-color: ${vars.$semantic.color.background.dark};
-      border-color: ${vars.$semantic.color.border.dividerStrong
-      }
-      
-      & p {
-        color: ${vars.$semantic.color.text.secondary};
-      }
+      border-color: ${vars.$semantic.color.border.dividerStrong};
     }
-
+    
+    p {
+      color: ${vars.$semantic.color.text.secondary};
+    }
+    
     hr {
       border-color: ${vars.$semantic.color.border.dividerStrong};
       background-color: ${vars.$semantic.color.background.dark};
