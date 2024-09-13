@@ -74,18 +74,6 @@ const home = ({ articleSource }: Props) => {
         </ScrollAnimation>
       </StyledSection>
       <StyledSection>
-        <ScrollAnimation>
-          <div className='profile-contents'>
-            <Text as={'h1'} typography={'title-xxl-bold'}>About</Text>
-            <Text as={'p'} typography={'text-xxl-bold'}>
-              안녕하세요. 프론트엔드 개발자 정성훈입니다.
-              <br />
-              Vue, React, Next.js, TypeScript를 주로 사용하며, 사용자 경험을 중요하게 생각합니다.
-            </Text>
-          </div>
-        </ScrollAnimation>
-      </StyledSection>
-      <StyledSection>
         <Markdown source={articleSource} />
       </StyledSection>
     </>
