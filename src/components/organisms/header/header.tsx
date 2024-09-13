@@ -1,3 +1,4 @@
+import { Logo } from '@/components/atoms/logo'
 import { BLOG_LINKS } from '@/constants';
 import { vars } from '@ui-tokens';
 import { navigation } from '@/constants/navigation';
@@ -19,8 +20,11 @@ export const Header = () => {
     <StyledHeaderContainer>
       <div className="header-container">
         <nav>
-          <Link href="/">
-            <Text typography={'title-xl-bold'}>Gamja</Text>
+          <Link
+            href="/"
+            className="nav-link"
+          >
+            <Logo />
           </Link>
           {navigation.map((nav, index) => (
             <StyledNavItem
@@ -28,7 +32,7 @@ export const Header = () => {
               key={index}
               $isCurrentPath={router.pathname === nav.link}
             >
-              <Text typography={'title-s-bold'}>{nav.title}</Text>
+              <Text typography={'title-s-bold'} color={router.pathname === nav.link ? 'interactive' : 'primary'}>{nav.title}</Text>
             </StyledNavItem>
           ))}
         </nav>
@@ -46,7 +50,7 @@ export const Header = () => {
                   <GoLinkExternal />
                 </div>
               )}
-              {isDesktop ? <Text typography={'title-xs-bold'}>GitHub</Text> : <FaGithub size={24} />}
+              {isDesktop ? <Text typography={'text-l-bold'}>GitHub</Text> : <FaGithub size={24} />}
               </>
             </Link>
           </li>
@@ -63,7 +67,7 @@ export const Header = () => {
                     <GoLinkExternal />
                   </div>
                 )}
-                {isDesktop ? 'Resume' : <GrDocumentUser size={24} />}
+                {isDesktop ? <Text typography={'text-l-bold'}>Resume</Text> : <GrDocumentUser size={24} />}
               </>
             </Link>
           </li>
@@ -88,6 +92,16 @@ const StyledHeaderContainer = styled.header`
     width: 100%;
     border-bottom: 2px solid ${vars.$semantic.color.border.line};
     height: 80px;
+    
+    & .nav-link {
+      width: 48px;
+      height: 48px;
+      
+      & svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
   
   & nav {
@@ -186,7 +200,7 @@ const StyledNavItem = styled.a<{ $isCurrentPath: boolean }>`
   }
   
   & :hover {
-    color: ${vars.$semantic.color.text.interactiveHover};
+    color: ${vars.$semantic.color.text.interactive};
   }
 
   & :hover::after {
@@ -194,8 +208,6 @@ const StyledNavItem = styled.a<{ $isCurrentPath: boolean }>`
   }
   
   ${({ $isCurrentPath }) => $isCurrentPath && `
-    color: ${vars.$semantic.color.text.interactive};
-    
     & ::after {
       width: 100%;
     }

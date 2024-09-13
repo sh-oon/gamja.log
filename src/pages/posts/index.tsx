@@ -1,4 +1,4 @@
-import PostTemplate from '@/components/templates/PostTemplate';
+import Posts from '@/components/templates/posts';
 import { getAllPosts } from '@/lib/serialize';
 import { TArticle } from '@/types/common';
 import { GetServerSideProps } from 'next';
@@ -20,7 +20,7 @@ type Props = {
 function PostPage({ posts }: Props) {
   return (
     <section className="px-6 pt-4 md:px-4">
-      <PostTemplate posts={posts} />
+      <Posts posts={posts} />
     </section>
   );
 }

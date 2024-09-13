@@ -1,5 +1,7 @@
 'use client'
 
+import { css, useTheme } from '@emotion/react'
+import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 
 type TElementPosition = {
@@ -8,12 +10,15 @@ type TElementPosition = {
   tag: string
 }
 
-function ToC() {
+
+export const  ToC = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
+  const theme = useTheme()
+  console.log(theme);
 
   useEffect(() => {
     const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || []
-
+    
     setElementPosition(
       Array.from(mds || []).map((md) => {
         return {
@@ -33,42 +38,70 @@ function ToC() {
     window.scrollTo({ top: el.top - 100 , behavior: 'smooth' })
   }
 
-  const textSize = (tag: string) => {
-    switch (tag) {
-      case 'h1':
-        return 'text-xl'
-      case 'h2':
-        return 'text-lg'
-      case 'h3':
-        return 'text-base pl-2'
-      case 'h4':
-        return 'text-sm pl-4'
-      case 'h5':
-        return 'text-xs'
-      case 'h6':
-        return 'text-xs'
-      default:
-        return 'text-sm'
-    }
-  }
-
   return (
-    <aside className='sticky flex-1 flex-shrink-0 w-fit top-[120px] left-full h-full'>
+    <StyledToC>
       <ul className='flex flex-col'>
         {elementPosition.map((el) => {
           return (
-            <li
+            <StyledToCItem
               key={el.id}
-              className={`block text-sm cursor-pointer text-grey-600 hover:text-black dark:hover:text-grey-200 ${textSize(el.tag)}`}
               onClick={() => clickToScroll(el.id)}
+              $padding={el.tag}
             >
               {el.id}
-            </li>
+            </StyledToCItem>
           )
         })}
       </ul>
-    </aside>
+    </StyledToC>
   )
 }
 
-export default ToC
+const StyledToC = styled.aside`
+  position: sticky;
+  top: 5rem;
+  left: 100%;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 5rem;
+  z-index: 100;
+  transition: left 0.3s;
+  overflow-y: auto;
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    gap: 0.5rem;
+  }
+`
+
+const textStyle = css`
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+  
+  &:hover {
+    color: #000;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    color: #ccc;
+    
+    &:hover {
+      color: #fff;
+    }
+  }
+`
+
+const StyledToCItem = styled.aside<{$padding: string}>`
+  ${textStyle}
+  
+  ${({ $padding }) => css`
+    padding-left: ${$padding === 'h2' ? '0' : $padding === 'h3' ? '1rem' : $padding === 'h4' ? '2rem' : '3rem'};
+  `}
+`

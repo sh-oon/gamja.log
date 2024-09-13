@@ -1,4 +1,4 @@
-import { TextProps } from '@/components/atoms/text/text.types'
+import { TextProps } from '@/components/atoms/text'
 import styled from '@emotion/styled'
 import { forwardRef } from 'react'
 import { vars } from '@ui-tokens'
@@ -24,12 +24,12 @@ Text.displayName = 'Text'
 
 
 const StyledText = styled.span<
-  Required<Pick<TextProps, 'color' | 'typography'>> & Pick<TextProps, 'align' | 'lineLimit'>
+  Required<Pick<TextProps, 'typography'>> & Pick<TextProps, 'align' | 'lineLimit' | 'color'>
 >`
   display: inline-block;
   ${({ typography }) => vars.$semantic.typography[typography]};
 
-  color: ${({ color }) => vars.$semantic.color.text[color]};
+  color: ${({ color }) => color ? vars.$semantic.color.text[color] : vars.$semantic.color.text.primary};
   text-align: ${({ align }) => align};
 
   ${({ lineLimit }) =>
@@ -44,6 +44,6 @@ const StyledText = styled.span<
   `};
   
   @media (prefers-color-scheme: dark) {
-    color: ${({ color }) => vars.$semantic.color.text[color]};
+    color: ${({ color }) => color ? vars.$semantic.color.text[color] : vars.$semantic.color.text.primary};
   }
 `
