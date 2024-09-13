@@ -1,5 +1,6 @@
 import { TArticle } from '@/types/common'
 import { formatDate } from '@/utils/common'
+import styled from '@emotion/styled'
 import React from 'react'
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 
 function MarkdownHeader({ post }: Props) {
   return (
-    <div className='flex flex-col gap-6'>
+    <StyledMarkdownHeader>
       <h1 className='text-6xl font-medium leading-tight tracking-tighter break-keep md:leading-none text-start'>
         {post.title}
       </h1>
@@ -25,8 +26,16 @@ function MarkdownHeader({ post }: Props) {
           ))}
         </div>
       </div>
-    </div>
+    </StyledMarkdownHeader>
   )
 }
+
+const StyledMarkdownHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 65rem;
+  margin: 0 auto;
+`
 
 export default MarkdownHeader

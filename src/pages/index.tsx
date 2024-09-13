@@ -1,3 +1,4 @@
+import ToC from '@/components/molecules/ToC'
 import { Markdown } from '@/components/organisms/Markdown'
 import { ScrollAnimation } from '@/components/scroll-animation/scroll-animation'
 import { BLOG_LINKS } from '@/constants'

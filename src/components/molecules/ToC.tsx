@@ -1,6 +1,9 @@
 'use client'
 
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
+import { Text } from '@/components/atoms'
 
 type TElementPosition = {
   id: string
@@ -8,12 +11,13 @@ type TElementPosition = {
   tag: string
 }
 
-function ToC() {
+
+export const  ToC = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
 
   useEffect(() => {
     const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || []
-
+    
     setElementPosition(
       Array.from(mds || []).map((md) => {
         return {
@@ -53,22 +57,61 @@ function ToC() {
   }
 
   return (
-    <aside className='sticky flex-1 flex-shrink-0 w-fit top-[120px] left-full h-full'>
+    <StyledToC>
       <ul className='flex flex-col'>
         {elementPosition.map((el) => {
           return (
-            <li
+            <StyledToCItem
               key={el.id}
-              className={`block text-sm cursor-pointer text-grey-600 hover:text-black dark:hover:text-grey-200 ${textSize(el.tag)}`}
               onClick={() => clickToScroll(el.id)}
+              $padding={el.tag}
             >
               {el.id}
-            </li>
+            </StyledToCItem>
           )
         })}
       </ul>
-    </aside>
+    </StyledToC>
   )
 }
 
-export default ToC
+const StyledToC = styled.aside`
+  position: sticky;
+  top: 5rem;
+  left: 100%;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 5rem;
+  z-index: 100;
+  transition: left 0.3s;
+  overflow-y: auto;
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    line-height: 200%;
+  }
+`
+
+const textStyle = css`
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+  
+  &:hover {
+    color: #000;
+  }
+`
+
+const StyledToCItem = styled.aside<{$padding: string}>`
+  ${textStyle}
+  
+  ${({ $padding }) => css`
+    padding-left: ${$padding === 'h2' ? '0' : $padding === 'h3' ? '1rem' : $padding === 'h4' ? '2rem' : '3rem'};
+  `}
+  
+`
