@@ -218,10 +218,15 @@ const StyledMarkdownContainer = styled.div`
       background-color: ${vars.$semantic.color.background.dark};
       border-color: ${vars.$semantic.color.border.dividerStrong
       }
+      
+      & p {
+        color: ${vars.$semantic.color.text.secondary};
+      }
     }
-    
+
     hr {
       border-color: ${vars.$semantic.color.border.dividerStrong};
       background-color: ${vars.$semantic.color.background.dark};
     }
+  }
 `

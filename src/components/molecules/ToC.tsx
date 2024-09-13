@@ -1,9 +1,8 @@
 'use client'
 
-import { css } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
-import { Text } from '@/components/atoms'
 
 type TElementPosition = {
   id: string
@@ -14,6 +13,8 @@ type TElementPosition = {
 
 export const  ToC = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
+  const theme = useTheme()
+  console.log(theme);
 
   useEffect(() => {
     const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || []
@@ -35,25 +36,6 @@ export const  ToC = () => {
     console.log(elementPosition, window.scrollY);
 
     window.scrollTo({ top: el.top - 100 , behavior: 'smooth' })
-  }
-
-  const textSize = (tag: string) => {
-    switch (tag) {
-      case 'h1':
-        return 'text-xl'
-      case 'h2':
-        return 'text-lg'
-      case 'h3':
-        return 'text-base pl-2'
-      case 'h4':
-        return 'text-sm pl-4'
-      case 'h5':
-        return 'text-xs'
-      case 'h6':
-        return 'text-xs'
-      default:
-        return 'text-sm'
-    }
   }
 
   return (
@@ -93,7 +75,8 @@ const StyledToC = styled.aside`
   & ul {
     display: flex;
     flex-direction: column;
-    line-height: 200%;
+    line-height: 1.5;
+    gap: 0.5rem;
   }
 `
 
@@ -105,6 +88,14 @@ const textStyle = css`
   &:hover {
     color: #000;
   }
+  
+  @media (prefers-color-scheme: dark) {
+    color: #ccc;
+    
+    &:hover {
+      color: #fff;
+    }
+  }
 `
 
 const StyledToCItem = styled.aside<{$padding: string}>`
@@ -113,5 +104,4 @@ const StyledToCItem = styled.aside<{$padding: string}>`
   ${({ $padding }) => css`
     padding-left: ${$padding === 'h2' ? '0' : $padding === 'h3' ? '1rem' : $padding === 'h4' ? '2rem' : '3rem'};
   `}
-  
 `
