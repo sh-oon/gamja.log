@@ -36,7 +36,7 @@ export const rook = {
 
 export const queen = {
   name: 'queen',
-  value: 9,
+  value: 7,
   image: {
     black: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg',
     white: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg',

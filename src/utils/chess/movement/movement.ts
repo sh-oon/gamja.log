@@ -2,7 +2,7 @@ import { PieceType } from '@/types/chess'
 import { knightMovement } from '@/utils/chess/movement/knight'
 import { pawnMovement } from '@/utils/chess/movement/pawn'
 
-export function movement(piece: PieceType, position, board, direction: 'up' | 'down'): string[] {
+export function movement(piece: Pick<PieceType, 'name'>, position, board, direction: 'up' | 'down'): string[] {
   switch (piece) {
     case 'king':
       return kingMovement(position)
@@ -13,7 +13,7 @@ export function movement(piece: PieceType, position, board, direction: 'up' | 'd
     case 'bishop':
       return bishopMovement(position)
     case 'knight':
-      return knightMovement(position)
+      return knightMovement(position, board)
     case 'pawn':
       return pawnMovement(position, board, direction)
     default:
