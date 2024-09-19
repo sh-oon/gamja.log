@@ -2,11 +2,13 @@
 
 import { Piece } from '@/components/atoms'
 import { ChessProps } from '@/components/templates'
+import { useChess } from '@/hooks/chess/chess'
 import { PieceType } from '@/types/chess'
 import { initChess } from '@/utils/chess/init'
 import { movement } from '@/utils/chess/movement/movement'
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Text } from '@/components/atoms'
 
 export const Chess = ({
                         currentSide,
@@ -17,6 +19,12 @@ export const Chess = ({
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [turn, setTurn] = useState<'white' | 'black'>('white')
   const [gameOver, setGameOver] = useState<boolean>(false)
+  
+  const {
+    pieceScore,
+    movePiece,
+  } = useChess()
+  
   const rowLabel = ['1', '2', '3', '4', '5', '6', '7', '8']
   const colLabel = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
   
@@ -59,18 +67,34 @@ export const Chess = ({
       return
     }
     
-    newBoard[toRow][toCol] = chessBoard[fromRow][fromCol]
-    newBoard[toRow][toCol].position = to
-    newBoard[fromRow][fromCol] = null
+    const board = movePiece(newBoard, [fromRow, fromCol], [toRow, toCol])
     
-    setChessBoard(newBoard)
+    setChessBoard(board)
     setSelectedPiece(null)
     setPossibleMoves([])
     setTurn(turn === 'white' ? 'black' : 'white')
   }
   
+  const currentScore = useMemo(() => {
+    const whiteScore = pieceScore.white.reduce((acc, cur) => acc + cur.value, 0)
+    const blackScore = pieceScore.black.reduce((acc, cur) => acc + cur.value, 0)
+    
+    console.log(pieceScore)
+    return {
+      white: whiteScore,
+      black: blackScore,
+    }
+  }, [pieceScore])
+  
+  
+  
   return (
     <StyledSection>
+      <StyledScoreContainer>
+        <div>
+          <Text typography={'title-xs-bold'}>{currentSide === 'white' ? 'BLACK' : 'WHITE'}: {currentScore[currentSide]}</Text>
+        </div>
+      </StyledScoreContainer>
       <StyledSquareContainer>
         <div className="chess-square">
           {chessBoard.map((row, rowIndex) => (
@@ -172,6 +196,11 @@ export const Chess = ({
           ))}
         </div>
       </StyledSquareContainer>
+      <StyledScoreContainer>
+        <div>
+          <Text typography={'title-xs-bold'}>{currentSide.toUpperCase()}: {currentScore[currentSide === 'white' ? 'black' : 'white']}</Text>
+        </div>
+      </StyledScoreContainer>
     </StyledSection>
   )
 }
@@ -180,9 +209,18 @@ const StyledSection = styled.section`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: start;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   padding-top: 2rem;
+`
+
+const StyledScoreContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
 `
 
 const StyledSquareContainer = styled.div`

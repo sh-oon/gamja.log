@@ -1,6 +1,6 @@
-import { Color } from '@/components/atoms'
-import { PieceType } from '@/types/chess'
+
+export type ChessSide = 'white' | 'black';
 
 export type ChessProps = {
-  currentSide: Color;
+  currentSide: ChessSide;
 }
