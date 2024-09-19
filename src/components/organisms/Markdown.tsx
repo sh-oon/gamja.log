@@ -86,14 +86,15 @@ export const Markdown = ({ source }: Props) => {
                     alt={alt ?? ''}
                     width={800}
                     height={400}
+                    priority
                   />
                 </span>
             ),
             
             blockquote: ({ children }) => (
-              <blockquote>
+              <StyledBlockquote>
                 {children}
-              </blockquote>
+              </StyledBlockquote>
             ),
             
             hr: () => <hr />,
@@ -187,17 +188,7 @@ const StyledMarkdownContainer = styled.div`
       width: 100%;
       max-width: 800px;
       height: auto;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-  }
-  
-  & blockquote {
-    margin: 1rem 0;
-    padding: 1rem;
-    font-style: italic;
-    border-left: 4px solid ${vars.$semantic.color.border.divider};
-    background-color: ${vars.$semantic.color.background.blockquote};
   }
   
   & hr {
@@ -224,11 +215,6 @@ const StyledMarkdownContainer = styled.div`
   }
   
   @media (prefers-color-scheme: dark) {
-    & blockquote {
-      background-color: ${vars.$semantic.color.background.dark};
-      border-color: ${vars.$semantic.color.border.dividerStrong};
-    }
-    
     p {
       color: ${vars.$semantic.color.text.secondary};
     }
@@ -238,4 +224,12 @@ const StyledMarkdownContainer = styled.div`
       background-color: ${vars.$semantic.color.background.dark};
     }
   }
+`
+
+const StyledBlockquote = styled.blockquote`
+  margin: 1rem 0;
+  padding: 1rem;
+  font-style: italic;
+  border-left: 4px solid ${vars.$semantic.color.border.divider};
+  background-color: ${vars.$semantic.color.background.blockquote};
 `
