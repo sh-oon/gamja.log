@@ -1,6 +1,6 @@
 'use client'
 
-import { css, useTheme } from '@emotion/react'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 
@@ -13,8 +13,6 @@ type TElementPosition = {
 
 export const  ToC = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
-  const theme = useTheme()
-  console.log(theme);
 
   useEffect(() => {
     const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || []

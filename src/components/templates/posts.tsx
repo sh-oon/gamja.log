@@ -1,4 +1,4 @@
-import ArticleCard from '@/components/molecules/ArticleCard';
+import { ArticleCard } from '@/components/molecules/ArticleCard';
 import ArticleTagsCard from '@/components/molecules/ArticleTagsCard';
 import Grid from '@/components/organisms/Grid';
 import { useDevice } from '@/context/DeviceContext';

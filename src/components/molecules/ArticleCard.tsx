@@ -10,7 +10,7 @@ type Props = {
   post: TArticle
 }
 
-function ArticleCard({ post }: Props) {
+export const ArticleCard = ({ post }: Props) => {
   return (
     <Link
       className="px-5 py-10 gap-16 md:p-2 border border-grey-900 dark:border-white dark:hover:bg-grey-800 hover:bg-grey-200 flex flex-col justify-between items-center"
@@ -29,7 +29,7 @@ function ArticleCard({ post }: Props) {
         alt={post.title}
         width={800}
         height={400}
-        className="w-4/5 h-56 object-cover border border-grey-900 mx-auto"
+        className="w-4/5 h-56 object-contain mx-auto"
         priority={true}
       />
       <div className='flex flex-col'>
@@ -40,4 +40,3 @@ function ArticleCard({ post }: Props) {
 }
 
 
-export default ArticleCard;

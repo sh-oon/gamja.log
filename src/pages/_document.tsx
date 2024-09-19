@@ -5,7 +5,6 @@ export default function Document() {
     <Html lang='kr'>
       <Head>
         <meta charSet='utf-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='title' content='Next.js blog' />
         <meta name='description' content='Next.js blog' />
         <meta name='author' content='author' />

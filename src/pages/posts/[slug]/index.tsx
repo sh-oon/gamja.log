@@ -5,6 +5,7 @@ import { useDevice } from '@/context/DeviceContext'
 import { getPostSourceBySlug } from '@/lib/serialize'
 import styled from '@emotion/styled'
 import { GetServerSideProps } from 'next'
+import { vars } from '@ui-tokens'
 import React from 'react'
 
 type Props = {
@@ -45,6 +46,7 @@ export default function ArticlePage({ articleSource }: Props) {
 const StyledArticlePage = styled.article`
   position: relative;
   padding: 0.75rem;
+  background-color: ${vars.$semantic.color.background.white};
   
   & .md-contents-container {
     display: grid;

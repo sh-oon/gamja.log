@@ -22,7 +22,10 @@ const nextConfig = {
       },
       {
         hostname: 'images.unsplash.com',
-      }
+      },
+      {
+        hostname: 'media.geeksforgeeks.org',
+      },
     ]
   },
 }
