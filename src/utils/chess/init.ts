@@ -1,7 +1,7 @@
 import { bishop, king, knight, pawn, queen, rook } from '@/constants/chess/pieces'
-import { PieceType } from '@/types/chess'
+import { ChessBoard} from '@/types/chess'
 
-export function initChess(side: 'white' | 'black'): PieceType[][] {
+export function initChess(side: 'white' | 'black'): ChessBoard {
   const board = Array(8).fill(null).map(() => Array(8).fill(null));
   
   const piecesWhite = {

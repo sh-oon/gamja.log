@@ -9,12 +9,11 @@ export const Piece = ({ piece, color, position, isDragging, isSelected, onMouseD
     <StyledPiece
       isDragging={isDragging}
       isSelected={isSelected}
-      piece={piece}
       onMouseDown={() => onMouseDown(position)}
     >
       <Image
         src={piece.image}
-        alt={`${color} ${piece.piece}`}
+        alt={`${color} ${piece.name}`}
         width={50}
         height={50}
       />
@@ -22,7 +21,7 @@ export const Piece = ({ piece, color, position, isDragging, isSelected, onMouseD
   )
 }
 
-const StyledPiece = styled.div<PieceProps>`
+const StyledPiece = styled.div<Pick<PieceProps, 'isDragging' | 'isSelected'>>`
   height: 100%;
   display: flex;
   justify-content: center;

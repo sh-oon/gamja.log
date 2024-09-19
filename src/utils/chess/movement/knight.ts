@@ -1,4 +1,7 @@
-export function knightMovement(position, board, piece) {
+import { PiecePosition } from '@/hooks/chess/useChess.types'
+import { ChessBoard } from '@/types/chess'
+
+export function knightMovement(position: string, board: ChessBoard): string[] {
   const [x, y] = position.split('')
   const moves = []
   for (let i = -2; i <= 2; i++) {
@@ -12,7 +15,7 @@ export function knightMovement(position, board, piece) {
   return moves.filter(move => validateKnightMovement(board, [x, y], move))
 }
 
-function validateKnightMovement(board, from, to) {
+function validateKnightMovement(board: ChessBoard, from: [string, string], to: string): boolean {
   const [x, y] = to.split('')
   const row = 8 - parseInt(y)
   const col = x.charCodeAt(0) - 65
@@ -25,6 +28,8 @@ function validateKnightMovement(board, from, to) {
     const target = board[row][col]
     const piece = board[8 - parseInt(from[1])][from[0].charCodeAt(0) - 65]
     
-    return piece.color !== target.color
+    if (target === null) return true
+    
+    return piece?.color !== target.color
   }
 }

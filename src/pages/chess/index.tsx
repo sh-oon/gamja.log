@@ -7,7 +7,6 @@ export default function ChessPage() {
     <StyledSection >
       <Chess
         currentSide={'white'}
-        onDragStart={() => {}}
       />
     </StyledSection>
   )

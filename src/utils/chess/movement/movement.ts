@@ -1,8 +1,8 @@
-import { PieceType } from '@/types/chess'
+import { ChessBoard, PieceName } from '@/types/chess'
 import { knightMovement } from '@/utils/chess/movement/knight'
 import { pawnMovement } from '@/utils/chess/movement/pawn'
 
-export function movement(piece: Pick<PieceType, 'name'>, position, board, direction: 'up' | 'down'): string[] {
+export function movement(piece: PieceName, position: string, board: ChessBoard, direction: 'up' | 'down'): string[] {
   switch (piece) {
     case 'king':
       return kingMovement(position)
@@ -21,7 +21,7 @@ export function movement(piece: Pick<PieceType, 'name'>, position, board, direct
   }
 }
 
-function kingMovement(position) {
+function kingMovement(position: string): string[] {
   const [x, y] = position.split('')
   const moves = []
   for (let i = -1; i <= 1; i++) {
@@ -33,11 +33,11 @@ function kingMovement(position) {
   return moves
 }
 
-function queenMovement(position) {
+function queenMovement(position: string): string[] {
   return rookMovement(position).concat(bishopMovement(position))
 }
 
-function rookMovement(position) {
+function rookMovement(position: string): string[] {
   const [x, y] = position.split('')
   const moves = []
   for (let i = 1; i <= 8; i++) {
@@ -47,7 +47,7 @@ function rookMovement(position) {
   return moves
 }
 
-function bishopMovement(position) {
+function bishopMovement(position: string): string[] {
   const [x, y] = position.split('')
   const moves = []
   for (let i = 1; i <= 8; i++) {

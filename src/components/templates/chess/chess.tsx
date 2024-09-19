@@ -2,12 +2,12 @@
 
 import { Piece } from '@/components/atoms'
 import { ChessProps } from '@/components/templates'
-import { useChess } from '@/hooks/chess/chess'
+import { useChess } from '@/hooks/chess/useChess'
 import { PieceType } from '@/types/chess'
 import { initChess } from '@/utils/chess/init'
 import { movement } from '@/utils/chess/movement/movement'
 import styled from '@emotion/styled'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Text } from '@/components/atoms'
 
 export const Chess = ({
@@ -147,6 +147,7 @@ export const Chess = ({
                   {chessBoard[rowIndex][colIndex] && (
                     <Piece
                       piece={chessBoard[rowIndex][colIndex]}
+                      color={chessBoard[rowIndex][colIndex].color as 'black' | 'white'}
                       position={`${getPiecePosition(rowIndex, colIndex)}`}
                       isDragging={isDragging}
                       isSelected={selectedPiece?.position === getPiecePosition(rowIndex, colIndex) && selectedPiece.name === chessBoard[rowIndex][colIndex]?.name}
@@ -161,7 +162,6 @@ export const Chess = ({
                         }
                       }}
                       onMouseUp={() => setIsDragging(false)}
-                      onMouseMove={onMove}
                     />
                   )}
                   {possibleMoves.includes(`${currentSide === 'white' ? colLabel[colIndex] : colLabel[7 - colIndex]}${currentSide === 'white' ? rowLabel[7 - rowIndex] : rowLabel[rowIndex]}`) && (

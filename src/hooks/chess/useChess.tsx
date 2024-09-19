@@ -1,22 +1,20 @@
-import { PiecesStatus, useChessType } from '@/hooks/chess/chess.types'
+import { PiecePosition, PiecesStatus, UseChessType } from '@/hooks/chess/useChess.types'
+import { ChessBoard } from '@/types/chess'
 import { useState } from 'react'
 
-export const useChess = ():useChessType => {
+export const useChess = ():UseChessType => {
   const [pieceScore, setPieceScore] = useState<PiecesStatus>({
     white: [],
     black: []
   });
   
-  function validatePieceDied(board, from, to): boolean {
-    const piece = board[from[0]][from[1]];
-    if (piece === null) return false;
-    const target = board[to[0]][to[1]];
-    if (target === null) return false;
-    return piece.side !== target.side;
-  }
-  
-  function removePiece(board, targetPosition) {
+  function removePiece(board: ChessBoard, targetPosition: PiecePosition): ChessBoard {
     const target = board[targetPosition[0]][targetPosition[1]];
+    
+    if (target === null) {
+      return board;
+    }
+    
     const side = target.color;
     
     const pieces = pieceScore[side];
@@ -30,8 +28,13 @@ export const useChess = ():useChessType => {
     return board;
   }
   
-  function movePiece(board, from, to) {
+  function movePiece(board: ChessBoard, from: PiecePosition, to: PiecePosition): ChessBoard {
     const piece = board[from[0]][from[1]];
+    
+    if (piece === null) {
+      return board;
+    }
+    
     piece.position = `${String.fromCharCode(65 + to[1])}${8 - to[0]}`;
     board[from[0]][from[1]] = null;
     if (board[to[0]][to[1]] !== null) {
@@ -45,7 +48,6 @@ export const useChess = ():useChessType => {
   
   return {
     pieceScore,
-    validatePieceDied,
     movePiece,
     removePiece
   }

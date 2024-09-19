@@ -1,8 +1,10 @@
-export function pawnMovement(position, board, direction) {
+import { ChessBoard } from '@/types/chess'
+
+export function pawnMovement(position: string, board: ChessBoard, direction: 'up' | 'down'): string[] {
   const [x, y] = position.split('')
   const row = direction === 'up' ? 8 - parseInt(y) - 1 : 8 - parseInt(y) + 1
   const col = x.charCodeAt(0) - 65
-  const moves = []
+  const moves: string[] = []
   
   if (row < 0 || row > 7 || col < 0 || col > 7) return moves
   
@@ -47,7 +49,7 @@ export function pawnMovement(position, board, direction) {
 }
 
 
-function validatePawnFrontMovement(board, position, direction) {
+function validatePawnFrontMovement(board: ChessBoard, position: string, direction: 'up' | 'down'): boolean {
   const [x, y] = position.split('')
   const row = direction === 'up' ? 8 - parseInt(y) - 1 : 8 - parseInt(y) + 1
   const col = x.charCodeAt(0) - 65
@@ -55,19 +57,22 @@ function validatePawnFrontMovement(board, position, direction) {
   return board[row][col] === null
 }
 
-function validatePawnDiagonalMovement(board, position, direction) {
+function validatePawnDiagonalMovement(board: ChessBoard, position: string, direction: 'up' | 'down'): boolean {
   const [x, y] = position.split('')
   const row = direction === 'up' ? 8 - parseInt(y) - 1 : 8 - parseInt(y) + 1
   const col = x.charCodeAt(0) - 65
   
-  if (board[row][col - 1] !== null) {
-    if (board[row][col - 1].color !== board[8 - parseInt(y)][x.charCodeAt(0) - 65].color) {
+  const leftDiagonal = board[row][col - 1]
+  const rightDiagonal = board[row][col + 1]
+  
+  if (leftDiagonal) {
+    if (leftDiagonal.color !== board[8 - parseInt(y)][x.charCodeAt(0) - 65]?.color) {
       return true
     }
   }
   
-  if (board[row][col + 1] !== null) {
-    if (board[row][col + 1].color !== board[8 - parseInt(y)][x.charCodeAt(0) - 65].color) {
+  if (rightDiagonal) {
+    if (rightDiagonal.color !== board[8 - parseInt(y)][x.charCodeAt(0) - 65]?.color) {
       return true
     }
   }

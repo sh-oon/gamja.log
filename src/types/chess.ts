@@ -12,3 +12,5 @@ export type PieceType = {
   enPassant?: boolean;
   promotion?: boolean;
 }
+
+export type ChessBoard = Array<PieceType | null>[];
