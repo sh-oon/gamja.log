@@ -2,17 +2,17 @@ import { ChessBoard } from '@/types/chess'
 
 export function rookMovement(position: string, board: ChessBoard): string[] {
   const [file, rank] = position.split('');
-  const x = file.charCodeAt(0) - 65; // 'A' -> 0, 'B' -> 1, ..., 'H' -> 7
-  const y = 8 - parseInt(rank);       // '1' -> 7, ..., '8' -> 0 (거꾸로)
+  const col = file.charCodeAt(0) - 65;
+  const row = 8 - parseInt(rank);     
   
   const moves: string[] = [];
   
-  // 위쪽 (y - i)
+  // 위쪽 (row - i)
   for (let i = 1; i < 8; i++) {
-    if (y - i >= 0) {
-      const newPosition = `${String.fromCharCode(65 + x)}${8 - (y - i)}`;
-      if (board[y - i][x] !== null) {
-        if (board[y - i][x].color !== board[y][x].color) {
+    if (row - i >= 0) {
+      const newPosition = `${String.fromCharCode(65 + col)}${8 - (row - i)}`;
+      if (board[row - i][col] !== null) {
+        if (board[row - i][col].color !== board[row][col].color) {
           moves.push(newPosition); // 적 말이 있으면 추가
         }
         break; // 장애물이 있으면 멈춤
@@ -23,12 +23,12 @@ export function rookMovement(position: string, board: ChessBoard): string[] {
     }
   }
   
-  // 아래쪽 (y + i)
+  // 아래쪽 (row + i)
   for (let i = 1; i < 8; i++) {
-    if (y + i < 8) {
-      const newPosition = `${String.fromCharCode(65 + x)}${8 - (y + i)}`;
-      if (board[y + i][x] !== null) {
-        if (board[y + i][x].color !== board[y][x].color) {
+    if (row + i < 8) {
+      const newPosition = `${String.fromCharCode(65 + col)}${8 - (row + i)}`;
+      if (board[row + i][col] !== null) {
+        if (board[row + i][col].color !== board[row][col].color) {
           moves.push(newPosition);
         }
         break;
@@ -39,12 +39,12 @@ export function rookMovement(position: string, board: ChessBoard): string[] {
     }
   }
   
-  // 오른쪽 (x + i)
+  // 오른쪽 (col + i)
   for (let i = 1; i < 8; i++) {
-    if (x + i < 8) {
-      const newPosition = `${String.fromCharCode(65 + x + i)}${8 - y}`;
-      if (board[y][x + i] !== null) {
-        if (board[y][x + i].color !== board[y][x].color) {
+    if (col + i < 8) {
+      const newPosition = `${String.fromCharCode(65 + col + i)}${8 - row}`;
+      if (board[row][col + i] !== null) {
+        if (board[row][col + i].color !== board[row][col].color) {
           moves.push(newPosition);
         }
         break;
@@ -55,12 +55,12 @@ export function rookMovement(position: string, board: ChessBoard): string[] {
     }
   }
   
-  // 왼쪽 (x - i)
+  // 왼쪽 (col - i)
   for (let i = 1; i < 8; i++) {
-    if (x - i >= 0) {
-      const newPosition = `${String.fromCharCode(65 + x - i)}${8 - y}`;
-      if (board[y][x - i] !== null) {
-        if (board[y][x - i].color !== board[y][x].color) {
+    if (col - i >= 0) {
+      const newPosition = `${String.fromCharCode(65 + col - i)}${8 - row}`;
+      if (board[row][col - i] !== null) {
+        if (board[row][col - i].color !== board[row][col].color) {
           moves.push(newPosition);
         }
         break;

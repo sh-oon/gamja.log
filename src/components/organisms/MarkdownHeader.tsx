@@ -2,6 +2,8 @@ import { TArticle } from '@/types/common'
 import { formatDate } from '@/utils/common'
 import styled from '@emotion/styled'
 import React from 'react'
+import { Text } from '@/components/atoms'
+import { vars } from '@ui-tokens'
 
 type Props = {
   post: TArticle
@@ -10,19 +12,21 @@ type Props = {
 function MarkdownHeader({ post }: Props) {
   return (
     <StyledMarkdownHeader>
-      <h1 className='text-6xl font-medium leading-tight tracking-tighter break-keep md:leading-none text-start'>
+      <Text as={'h1'} typography={'title-xxl-bold'}>
         {post.title}
-      </h1>
-      <div className='flex flex-col gap-2'>
-        <span className='text-grey-600'>{formatDate(post.date, 'kr')}</span>
-        <div className='flex gap-2'>
+      </Text>
+      <div className='description-container'>
+        <Text color={'tertiary'}>{formatDate(post.date, 'kr')}</Text>
+        <div className='tag-container'>
           {post.tags.map((tag, index) => (
-            <span
+            <Text
               key={index}
-              className='px-3 py-1 font-semibold rounded-full text-primary-main bg-grey-200 dark:bg-grey-700'
+              typography='text-m-bold'
+              color='interactive'
+              className='rounded-full text-primary-main bg-grey-200 dark:bg-grey-700'
             >
-              {tag}
-            </span>
+              #{tag}
+            </Text>
           ))}
         </div>
       </div>
@@ -36,6 +40,25 @@ const StyledMarkdownHeader = styled.div`
   gap: 1.25rem;
   max-width: 65rem;
   margin: 0 auto;
+  padding-top: 2rem;
+  
+  & .description-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+  
+  & .tag-container {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  & .tag-container span {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background-color: ${vars.$semantic.color.background.blockquote};
+  }
 `
 
 export default MarkdownHeader
