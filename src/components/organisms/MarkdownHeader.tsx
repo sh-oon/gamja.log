@@ -16,7 +16,10 @@ function MarkdownHeader({ post }: Props) {
         {post.title}
       </Text>
       <div className='description-container'>
-        <Text color={'tertiary'}>{formatDate(post.date, 'kr')}</Text>
+        <Text
+          typography={'text-m'}
+          color={'tertiary'}
+        >{formatDate(post.date, 'kr')}</Text>
         <div className='tag-container'>
           {post.tags.map((tag, index) => (
             <Text

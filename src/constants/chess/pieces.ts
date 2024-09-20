@@ -1,4 +1,6 @@
-export const pawn = {
+import { PieceDataType, SingleImagePieceDataType } from '@/types/chess'
+
+export const pawn: PieceDataType = {
   name: 'pawn',
   value: 1,
   image: {
@@ -7,7 +9,7 @@ export const pawn = {
   },
 }
 
-export const knight = {
+export const knight: PieceDataType = {
   name: 'knight',
   value: 3,
   image: {
@@ -16,7 +18,7 @@ export const knight = {
   },
 }
 
-export const bishop = {
+export const bishop: PieceDataType = {
   name: 'bishop',
   value: 3,
   image: {
@@ -25,7 +27,7 @@ export const bishop = {
   },
 }
 
-export const rook = {
+export const rook: PieceDataType = {
   name: 'rook',
   value: 5,
   image: {
@@ -34,7 +36,7 @@ export const rook = {
   },
 }
 
-export const queen = {
+export const queen: PieceDataType = {
   name: 'queen',
   value: 7,
   image: {
@@ -43,7 +45,7 @@ export const queen = {
   },
 }
 
-export const king = {
+export const king: PieceDataType = {
   name: 'king',
   value: 100,
   image: {
@@ -52,56 +54,56 @@ export const king = {
   },
 }
 
-export const piecesWhite = {
+export const piecesWhite: { [key: string]: SingleImagePieceDataType } = {
   rook: {
     ...rook,
     image: rook.image.white,
   },
   knight: {
     ...knight,
-    image: knight.image.white
+    image: knight.image.white,
   },
   bishop: {
     ...bishop,
-    image: bishop.image.white
+    image: bishop.image.white,
   },
   queen: {
     ...queen,
-    image: queen.image.white
+    image: queen.image.white,
   },
   king: {
     ...king,
-    image: king.image.white
+    image: king.image.white,
   },
   pawn: {
     ...pawn,
-    image: pawn.image.white
-  }
-};
+    image: pawn.image.white,
+  },
+}
 
 export const piecesBlack = {
   rook: {
     ...rook,
-    image: rook.image.black
+    image: rook.image.black,
   },
   knight: {
     ...knight,
-    image: knight.image.black
+    image: knight.image.black,
   },
   bishop: {
     ...bishop,
-    image: bishop.image.black
+    image: bishop.image.black,
   },
   queen: {
     ...queen,
-    image: queen.image.black
+    image: queen.image.black,
   },
   king: {
     ...king,
-    image: king.image.black
+    image: king.image.black,
   },
   pawn: {
     ...pawn,
-    image: pawn.image.black
-  }
-};
+    image: pawn.image.black,
+  },
+}

@@ -29,7 +29,7 @@ export function kingMovement(position: string, board: ChessBoard): string[] {
       if (targetPiece === null) {
         // 빈 칸이면 이동 가능
         moves.push(newPosition)
-      } else if (targetPiece.color !== board[row][col].color) {
+      } else if (targetPiece.color !== board[row][col]?.color) {
         // 적 말이 있으면 이동 가능
         moves.push(newPosition)
       }

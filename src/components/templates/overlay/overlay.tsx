@@ -9,8 +9,7 @@ export const OverlayContainer = ({ isOpen, close, children, overlayId }: PropsWi
       {isOpen && (
         <Overlay>
           <Backdrop onClick={() => {
-            console.log(close, overlayId, isOpen)
-            close(overlayId)
+            close()
           }} />
           <Content>{children}</Content>
         </Overlay>
