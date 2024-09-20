@@ -8,7 +8,6 @@ export type PieceType = {
   possibleMoves?: string[];
   hasMoved?: boolean;
   color: 'white' | 'black';
-  castling?: boolean;
   enPassant?: boolean;
   promotion?: boolean;
 }

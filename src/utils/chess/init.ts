@@ -1,62 +1,8 @@
-import { bishop, king, knight, pawn, queen, rook } from '@/constants/chess/pieces'
+import { piecesBlack, piecesWhite } from '@/constants/chess/pieces'
 import { ChessBoard} from '@/types/chess'
 
 export function initChess(side: 'white' | 'black'): ChessBoard {
   const board = Array(8).fill(null).map(() => Array(8).fill(null));
-  
-  const piecesWhite = {
-    rook: {
-      ...rook,
-      image: rook.image.white,
-    },
-    knight: {
-      ...knight,
-      image: knight.image.white
-    },
-    bishop: {
-      ...bishop,
-      image: bishop.image.white
-    },
-    queen: {
-      ...queen,
-      image: queen.image.white
-    },
-    king: {
-      ...king,
-      image: king.image.white
-    },
-    pawn: {
-      ...pawn,
-      image: pawn.image.white
-    }
-  };
-  
-  const piecesBlack = {
-    rook: {
-      ...rook,
-      image: rook.image.black
-    },
-    knight: {
-      ...knight,
-      image: knight.image.black
-    },
-    bishop: {
-      ...bishop,
-      image: bishop.image.black
-    },
-    queen: {
-      ...queen,
-      image: queen.image.black
-    },
-    king: {
-      ...king,
-      image: king.image.black
-    },
-    pawn: {
-      ...pawn,
-      image: pawn.image.black
-    }
-  };
   
   const isWhite = side === 'white';
   

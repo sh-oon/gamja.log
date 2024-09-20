@@ -51,3 +51,57 @@ export const king = {
     white: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg',
   },
 }
+
+export const piecesWhite = {
+  rook: {
+    ...rook,
+    image: rook.image.white,
+  },
+  knight: {
+    ...knight,
+    image: knight.image.white
+  },
+  bishop: {
+    ...bishop,
+    image: bishop.image.white
+  },
+  queen: {
+    ...queen,
+    image: queen.image.white
+  },
+  king: {
+    ...king,
+    image: king.image.white
+  },
+  pawn: {
+    ...pawn,
+    image: pawn.image.white
+  }
+};
+
+export const piecesBlack = {
+  rook: {
+    ...rook,
+    image: rook.image.black
+  },
+  knight: {
+    ...knight,
+    image: knight.image.black
+  },
+  bishop: {
+    ...bishop,
+    image: bishop.image.black
+  },
+  queen: {
+    ...queen,
+    image: queen.image.black
+  },
+  king: {
+    ...king,
+    image: king.image.black
+  },
+  pawn: {
+    ...pawn,
+    image: pawn.image.black
+  }
+};
