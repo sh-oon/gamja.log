@@ -79,7 +79,6 @@ export const Chess = ({
     const whiteScore = pieceScore.white.reduce((acc, cur) => acc + cur.value, 0)
     const blackScore = pieceScore.black.reduce((acc, cur) => acc + cur.value, 0)
     
-    console.log(pieceScore)
     return {
       white: whiteScore,
       black: blackScore,
