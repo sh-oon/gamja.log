@@ -28,15 +28,16 @@ export const Chess = ({
   const rowLabel = ['1', '2', '3', '4', '5', '6', '7', '8']
   const colLabel = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
   
-  useEffect(() => {
-    if (selectedPiece) {
-      // currentSide 기준으로 상대방 피스면 down, 아니면 up
-      const direction = selectedPiece.color === currentSide ? 'up' : 'down'
-      setPossibleMoves(movement(selectedPiece.name, selectedPiece.position, chessBoard, direction))
+  const selectPiece = (piece: PieceType) => {
+    if (!selectedPiece || selectedPiece.position !== piece.position) {
+      setSelectedPiece(piece)
+      const direction = piece.color === currentSide ? 'up' : 'down'
+      setPossibleMoves(movement(piece.name, piece.position, chessBoard, direction))
     } else {
+      setSelectedPiece(null)
       setPossibleMoves([])
     }
-  }, [chessBoard, currentSide, selectedPiece])
+  }
   
   useEffect(() => {
     if (gameOver) {
@@ -79,7 +80,6 @@ export const Chess = ({
     const whiteScore = pieceScore.white.reduce((acc, cur) => acc + cur.value, 0)
     const blackScore = pieceScore.black.reduce((acc, cur) => acc + cur.value, 0)
     
-    console.log(pieceScore)
     return {
       white: whiteScore,
       black: blackScore,
@@ -98,51 +98,27 @@ export const Chess = ({
       <StyledSquareContainer>
         <div className="chess-square">
           {chessBoard.map((row, rowIndex) => (
-            <div
-              key={rowIndex}
-              style={{
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'sandybrown',
-                position: 'relative',
-              }}
-            >
+            <StyledRow key={rowIndex}>
               {row.map((col, colIndex) => (
-                <div
+                <StyledCol
                   key={colIndex}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: (rowIndex + colIndex) % 2 === 0 ? 'sandybrown' : 'brown',
-                    position: 'relative',
-                    padding: '1rem',
-                  }}
+                  isWhite={(rowIndex + colIndex) % 2 === 0}
                 >
                   {rowIndex % 8 === 7 && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        right: '5%',
-                        bottom: 0,
-                        color: colIndex % 2 === 1 ? 'black' : 'white',
-                        fontWeight: 'bold',
-                      }}
+                    <StyledLabel
+                      isRank={true}
+                      isWhite={colIndex % 2 === 1}
                     >
                       {currentSide === 'white' ? colLabel[colIndex] : colLabel[7 - colIndex]}
-                    </div>
+                    </StyledLabel>
                   )}
                   {colIndex % 8 === 0 && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        left: '5%',
-                        top: 0,
-                        color: rowIndex % 2 === 0 ? 'black' : 'white',
-                        fontWeight: 'bold',
-                      }}
+                    <StyledLabel
+                      isRank={false}
+                      isWhite={rowIndex % 2 === 0}
                     >
                       {currentSide === 'white' ? rowLabel[7 - rowIndex] : rowLabel[rowIndex]}
-                    </div>
+                    </StyledLabel>
                   )}
                   {chessBoard[rowIndex][colIndex] && (
                     <Piece
@@ -152,13 +128,8 @@ export const Chess = ({
                       isDragging={isDragging}
                       isSelected={selectedPiece?.position === getPiecePosition(rowIndex, colIndex) && selectedPiece.name === chessBoard[rowIndex][colIndex]?.name}
                       onMouseDown={(position) => {
-                        console.log(turn, chessBoard[rowIndex][colIndex]?.color)
                         if (turn === chessBoard[rowIndex][colIndex]?.color) {
-                          if (selectedPiece?.position === position && selectedPiece.name === chessBoard[rowIndex][colIndex]?.name) {
-                            setSelectedPiece(null)
-                          } else {
-                            setSelectedPiece(chessBoard[rowIndex][colIndex])
-                          }
+                          selectPiece(chessBoard[rowIndex][colIndex])
                         }
                       }}
                       onMouseUp={() => setIsDragging(false)}
@@ -190,9 +161,9 @@ export const Chess = ({
                       />
                     </div>
                   )}
-                </div>
+                </StyledCol>
               ))}
-            </div>
+            </StyledRow>
           ))}
         </div>
       </StyledSquareContainer>
@@ -246,4 +217,26 @@ const StyledSquareContainer = styled.div`
       grid-template-columns: repeat(8, 1fr);
     }
   }
+`
+
+const StyledRow = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: sandybrown;
+  position: relative
+`
+
+const StyledCol = styled.div<{ isWhite: boolean }>`
+  width: 100%;
+  height: 100%;
+  background-color: ${({ isWhite }) => isWhite ? 'sandybrown' : 'brown'};
+  position: relative;
+  padding: 1rem;
+`
+
+const StyledLabel = styled.span<{ isRank: boolean; isWhite: boolean }>`
+  position: absolute;
+  font-weight: bold;
+  ${({ isRank }) => isRank ? 'right: 5%; bottom: 0;' : 'left: 5%; top: 0;'}
+  ${({ isWhite }) => isWhite ? 'color: black;' : 'color: white;'}
 `

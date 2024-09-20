@@ -29,7 +29,7 @@ export default function ArticlePage({ articleSource }: Props) {
   const { isMobile } = useDevice()
   
   return (
-    <StyledArticlePage className="p-3">
+    <StyledArticlePage>
       <div className="md-container">
         <MarkdownHeader post={post} />
         <div className="md-contents-container">
@@ -47,10 +47,11 @@ const StyledArticlePage = styled.article`
   position: relative;
   padding: 0.75rem;
   background-color: ${vars.$semantic.color.background.white};
+  min-height: 100%;
   
   & .md-contents-container {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 65rem 10rem;
     gap: 2rem;
     position: relative;
   }
