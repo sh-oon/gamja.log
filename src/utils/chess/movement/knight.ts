@@ -1,4 +1,3 @@
-import { PiecePosition } from '@/hooks/chess/useChess.types'
 import { ChessBoard } from '@/types/chess'
 
 export function knightMovement(position: string, board: ChessBoard): string[] {
