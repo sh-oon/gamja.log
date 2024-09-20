@@ -51,7 +51,7 @@ const StyledArticlePage = styled.article`
   
   & .md-contents-container {
     display: grid;
-    grid-template-columns: 1fr 65rem 10rem;
+    grid-template-columns: 1fr 6fr 1fr;
     gap: 2rem;
     position: relative;
   }

@@ -110,7 +110,7 @@ const StyledMarkdownContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 12px;
+  gap: 24px;
   
   & #markdown {
     max-width: 65rem;
@@ -194,6 +194,56 @@ const StyledMarkdownContainer = styled.div`
   & hr {
     margin: 0.5rem 0;
     border-top: 1px solid ${vars.$semantic.color.border.divider};
+  }
+  
+  & code {
+    /* gray 200 */
+    background-color: var(--color-neutral-20);
+    border-radius: 0.25rem;
+    padding: 0 0.25rem;
+    margin: 0 0.1rem;
+    font-size: small;
+    counter-reset: line;
+  }
+  
+  & pre {
+    border: 1px solid var(--color-border-line);
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    margin: 1rem 0;
+  }
+  
+  & pre > code {
+    background-color: transparent;
+  }
+  
+  & code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: #6b7280;
+  }
+  
+  & code[data-line-numbers-max-digits="2"] > [data-line]::before {
+    width: 2rem;
+  }
+  
+  & code[data-line-numbers-max-digits="3"] > [data-line]::before {
+    width: 3rem;
+  }
+  
+  & li > ul {
+    padding-left: 2rem;
+  }
+  
+  & li > ul li {
+    list-style-type: circle;
   }
   
   
