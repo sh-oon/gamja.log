@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "reset.css";
 
 html {
   -moz-osx-font-smoothing: grayscale;
@@ -82,15 +80,15 @@ html {
   --font-size-75: 12px;
   --font-size-100: 13px;
   --font-size-125: 14px;
-  --font-size-150: 15px;
-  --font-size-200: 16px;
-  --font-size-250: 18px;
-  --font-size-300: 20px;
-  --font-size-350: 22px;
-  --font-size-400: 24px;
-  --font-size-500: 28px;
-  --font-size-550: 30px;
-  --font-size-600: 32px;
+  --font-size-150: 16px;
+  --font-size-200: 18px;
+  --font-size-250: 20px;
+  --font-size-300: 22px;
+  --font-size-350: 24px;
+  --font-size-400: 26px;
+  --font-size-500: 30px;
+  --font-size-550: 32px;
+  --font-size-600: 34px;
   --font-size-1000: 48px;
 
   /* Line Height */
@@ -377,7 +375,7 @@ html {
     --color-fill-success: #12b76a;
 
     /* Border Colors */
-    --color-border-line: var(--color-neutral-20);
+    --color-border-line: var(--color-neutral-100);
     --color-border-error: #fda29b;
     --color-border-warning: #fec84b;
     --color-border-success: #6ce9a6;

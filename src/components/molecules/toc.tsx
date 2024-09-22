@@ -11,7 +11,7 @@ type TElementPosition = {
 }
 
 
-export const  ToC = () => {
+export const Toc = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
 
   useEffect(() => {
@@ -31,14 +31,13 @@ export const  ToC = () => {
   const clickToScroll = (id: string) => {
     const el = elementPosition.find((el) => el.id === id)
     if (!el) return
-    console.log(elementPosition, window.scrollY);
 
     window.scrollTo({ top: el.top - 100 , behavior: 'smooth' })
   }
 
   return (
     <StyledToC>
-      <ul className='flex flex-col'>
+      <ul>
         {elementPosition.map((el) => {
           return (
             <StyledToCItem

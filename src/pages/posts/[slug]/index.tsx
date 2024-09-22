@@ -1,4 +1,4 @@
-import { ToC } from '@/components/molecules/ToC'
+import { Toc } from '@/components/molecules/toc'
 import { Markdown } from '@/components/organisms/Markdown'
 import MarkdownHeader from '@/components/organisms/MarkdownHeader'
 import { useDevice } from '@/context/DeviceContext'
@@ -33,7 +33,7 @@ export default function ArticlePage({ articleSource }: Props) {
       <div className="md-container">
         <MarkdownHeader post={post} />
         <div className="md-contents-container">
-          {!isMobile && (<ToC />)}
+          {!isMobile && (<Toc />)}
           <Markdown
             source={articleSource}
           />

@@ -9,8 +9,7 @@ type Props = {
 
 function Grid({ columns, gap = 16, children }: PropsWithChildren<Props>) {
   const gridTemplateColumns = `repeat(${columns}, 1fr)`;
-
-
+  
   return (
     <div
       style={{

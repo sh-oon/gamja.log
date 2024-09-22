@@ -1,5 +1,4 @@
-import { ArticleCard } from '@/components/molecules/ArticleCard';
-import ArticleTagsCard from '@/components/molecules/ArticleTagsCard';
+import { ArticleCard, ArticleTagCard } from '@/components/molecules';
 import Grid from '@/components/organisms/Grid';
 import { useDevice } from '@/context/DeviceContext';
 import { TArticle } from '@/types/common';
@@ -23,7 +22,7 @@ function Posts({ posts }: Props) {
 
   return (
     <Grid columns={isMobile ? 1 : 3}>
-      <ArticleTagsCard
+      <ArticleTagCard
         tags={uniqueTags(tags)}
         selectHandler={(tags) => {
           filterPosts(tags);

@@ -36,7 +36,10 @@ export const Header = () => {
             </StyledNavItem>
           ))}
         </nav>
-        <ul className="external-link-container">
+        <ul
+          className="external-link-container"
+          role={'list'}
+        >
           <li>
             <Link
               href={BLOG_LINKS.github as string}

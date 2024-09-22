@@ -121,7 +121,7 @@ const StyledMarkdownContainer = styled.div`
     width: 80%;
     margin: 5rem auto;
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,z 0, 0, 0.1);
   }
   
   & > div {

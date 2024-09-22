@@ -31,5 +31,6 @@ const containerVariants = {
 };
 
 const StyledContainer = styled(motion.div)`
-
+  width: 100%;
+  display: flex;
 `

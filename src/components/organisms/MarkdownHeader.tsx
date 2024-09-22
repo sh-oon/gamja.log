@@ -26,7 +26,6 @@ function MarkdownHeader({ post }: Props) {
               key={index}
               typography='text-m-bold'
               color='interactive'
-              className='rounded-full text-primary-main bg-grey-200 dark:bg-grey-700'
             >
               #{tag}
             </Text>
@@ -60,6 +59,7 @@ const StyledMarkdownHeader = styled.div`
     display: inline-block;
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
+    color: ${vars.$semantic.color.text.interactive};
     background-color: ${vars.$semantic.color.background.blockquote};
   }
 `
