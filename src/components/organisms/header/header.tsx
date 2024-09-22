@@ -30,9 +30,9 @@ export const Header = () => {
             <StyledNavItem
               href={nav.link}
               key={index}
-              $isCurrentPath={router.pathname === nav.link}
+              $isCurrentPath={router.pathname.includes(nav.link)}
             >
-              <Text typography={'title-s-bold'} color={router.pathname === nav.link ? 'interactive' : 'primary'}>{nav.title}</Text>
+              <Text typography={'title-s-bold'} color={router.pathname.includes(nav.link) ? 'interactive' : 'primary'}>{nav.title}</Text>
             </StyledNavItem>
           ))}
         </nav>

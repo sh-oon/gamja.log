@@ -66,6 +66,14 @@ const StyledCardContainer = styled.div`
     align-items: center;
   }
   
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    
+    & a {
+      gap: 2rem;
+    }
+  }
+  
   @media (prefers-color-scheme: dark) {
     border: 1px solid ${vars.$semantic.color.border.line};
   }
@@ -105,6 +113,11 @@ const ImageContainer = styled.div`
     height: auto;
     border-radius: 1rem;
     overflow: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 10rem;
   }
 `
 

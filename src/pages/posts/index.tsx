@@ -32,9 +32,9 @@ const StyledSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: start;
-  padding: 1rem 1.5rem 0;
+  padding: 1rem 1.5rem;
   
   @media (max-width: 768px) {
-    padding: 1rem 1rem;
+    padding: 1rem;
   }
 `

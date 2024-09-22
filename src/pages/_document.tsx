@@ -5,12 +5,16 @@ export default function Document() {
     <Html lang='kr'>
       <Head>
         <meta charSet='utf-8' />
-        <meta name='title' content='Next.js blog' />
-        <meta name='description' content='Next.js blog' />
+        <meta name='title' content='Gamja.log' />
+        <meta name='description' content='Gamja.log' />
         <meta name='author' content='author' />
-        <meta name='keywords' content='nextjs, blog' />
+        <meta name='keywords' content='Gamja.log' />
         <meta name='robots' content='index, follow' />
         <meta name='theme-color' content='#000000' />
+        <meta name='og:title' content='Gamja.log' />
+        <meta name='og:description' content='Gamja.log' />
+        <meta name='og:type' content='website' />
+        <meta name='og:url' content='https://gamjalog.vercel.app/' />
         <link rel='icon' href='/favicon.ico' />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
