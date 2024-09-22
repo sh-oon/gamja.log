@@ -37,7 +37,7 @@ export const Toc = () => {
 
   return (
     <StyledToC>
-      <ul>
+      <ul role={'list'}>
         {elementPosition.map((el) => {
           return (
             <StyledToCItem
@@ -72,6 +72,7 @@ const StyledToC = styled.aside`
   & ul {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     line-height: 1.5;
     gap: 0.5rem;
   }
