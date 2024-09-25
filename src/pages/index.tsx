@@ -1,5 +1,6 @@
 import { ScrollAnimation } from '@/components/scroll-animation/scroll-animation'
 import { BLOG_LINKS } from '@/constants'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React from 'react'
@@ -17,7 +18,9 @@ const home = () => {
           </h1>
         </ScrollAnimation>
         <ScrollAnimation>
-          <div className="profile-container">
+          <div
+            className="profile-container"
+          >
             <div className="image-container">
               <Image
                 src="/assets/avatar.webp"

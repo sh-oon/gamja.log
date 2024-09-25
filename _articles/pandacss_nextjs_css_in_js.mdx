@@ -1,0 +1,321 @@
+---
+title: App router 에서는 어떻게 CSS-in-JS를 사용할까?
+link: pandacss_nextjs_css_in_js
+date: 2024-09-25
+tags:
+  - Library
+  - Next.js
+coverImage: '/assets/articles/panda_css_banner/panda_css_banner.webp'
+ogImage: '/assets/articles/panda_css_banner/panda_css_banner.webp'
+---
+
+# 서론
+
+일전에 만들었던 체스 게임을 별도의 프로젝트로 운영하여 분리하고자 했다. <br/>
+
+현재까진 app-router의 기능을 충분히 활용할 수 없다고 생각했고,
+주로 사용하는 emotion을 사용한 스타일 라이브러리 세팅이 편리한 page기반으로 작업해왔다.
+
+이번 기회에 app-router에 대해서 더 알아보고 직접 사용해 보려는데...
+
+> *그러나, 스타일 라이브러리 부터 삐걱거리기 시작했다!!*
+
+평소와 다름없이 emotion 라이브러리를 설치하고
+
+당연히 작동할 줄 알았는데, 작동하지 않았다.
+
+# 문제
+
+``` error
+createContext only works in Client Components. Add the "use client" directive at the top of the file to use it. Read more: https://nextjs.org/docs/messages/context-in-server-component
+    at eval (webpack-internal:///(rsc)/./node_modules/@emotion/react/dist/emotion-element-ba80abe0.development.esm.js:39:53)
+    at (rsc)/./node_modules/@emotion/react/dist/emotion-element-ba80abe0.development.esm.js (/Users/gamja/Desktop/workspace/chess-game/.next/server/vendor-chunks/@emotion.js:70:1)
+    at __webpack_require__ (/Users/gamja/Desktop/workspace/chess-game/.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./node_modules/@emotion/styled/base/dist/emotion-styled-base.development.esm.js:9:72)
+    at (rsc)/./node_modules/@emotion/styled/base/dist/emotion-styled-base.development.esm.js (/Users/gamja/Desktop/workspace/chess-game/.next/server/vendor-chunks/@emotion.js:100:1)
+}
+```
+> 스크린샷은 찍지 못했지만 로그는 남아있어 대체하겠습니다
+
+emotion 라이브러리는 app router 방식을 공식적으로 지원해주지 않는다.
+
+흔하게 접할 수 있는 css 속성을 사용하기위해 tsconfig.json에
+```json
+"jsxImportSource": "@emotion/react",
+```
+위와 같은 속성을 추가해야 한다.
+
+그러나 이방법은 @emotion/react을 사용하는 방법이고
+
+```tsx
+import { css } from '@emotion/react';
+
+  <div
+    css={css`
+      background-color: hotpink;
+      font-size: 24px;
+      border-radius: 4px;
+      &:hover {
+        color: white;
+      }
+    `}
+  >
+   ...
+```
+
+이런식으로 사용할 수 있다.
+
+그러나 위 속성을 가진 태그는 모두 client 컴포넌트가 된다.
+해당 속성으로 인해 jsx는 런타임에서 처리되기 때문이다.
+
+이렇게 되면 app router에서는 rsc를 사용할 수 없다.
+
+그렇다면 전혀 사용할 수 없는 걸까
+
+# 해결 방안 - 1
+
+여러 방법을 찾아 보는 중, 같은 고민을 한 분이 있었다.
+
+바로 next.config.js에서 webpack을 커스텀 하는 방법이었는데
+
+> 참고 : [[Next.js 13] Emotion으로 app router RSC를 구성해보자](https://parkparkpark.tistory.com/189)
+
+해당 글을 참고하여 수정해 보았다.
+
+```js
+/** @type {import('next').NextConfig} */
+
+const path = require('path');
+
+const includePaths = [
+  path.resolve(__dirname, 'src'),
+];
+
+const nextConfig = {
+  // ...
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback.fs = false
+
+    if (isServer) {
+      config.resolve.alias['@emotion/react'] = 'react';
+    }
+  }
+
+    return config
+  },
+  // ...
+}
+
+export default nextConfig
+```
+
+그러나 여전히 작동하지 않았다.
+
+# 해결 방안 - 2
+
+Next.js의 공식문서를 참고하면, 현재 app directory를 지원하는 css-in-js 라이브러리를 알려주고 있다.
+
+> 참고 : [Next.js - CSS-in-JS Libraries](https://nextjs.org/docs/app/building-your-application/styling/css-in-js)
+
+익숙하면서도 처음 보는 듯한 라이브러리들이 있다.
+``styled-components``, ``@emotion/styled``, ``styled-jsx`` 등이 있다.
+
+그중에서도 ``PandaCSS``가 눈에 띄었다
+
+## PandaCSS
+
+지금까지의 가장 큰 문제는
+
+> 1. app router에서 서버 컴포넌트는 서버 사이드에서 실행된다.
+> 2. 또한 그 실행의 결과물은 stream의 형태로 전달된다.
+> 3. 서버컴포넌트는 정적으로 동작해야한다.
+
+라는 서버컴포넌트의 동작 패러다임에 의해
+런타임에서 빌드되는 css-in-js 라이브러리는 사용할 수 없다는 점이다.
+
+PandaCSS는 Chakra UI, Vanila Extract, Tailwind CSS 등의 프로젝트에서 영감을 얻어 개발되었다고 소개하고 있다.
+
+자세한 이야기는 [PandaCSS](https://panda-css.com/docs/overview/why-panda)에서 확인할 수 있다.
+
+공식 홈페이지에서도 사용하는 프레임워크나 라이브러리 별로 상세한 안내가 되어있으며,
+
+동영상 강의도 제공하고 있다. 물론 유료로 제공한다.
+
+## 특징
+
+
+#### 디자인 토큰
+
+PandaCSS는 디자인 토큰을 쉽게 정의할 수 있다
+기존의 프로젝트에선 디자인 토큰을 정의하고 매번 import 해야했지만,
+PandaCSS는 이를 간단하게 정의할 수 있다.
+
+```ts
+import { defineConfig } from '@pandacss/dev'
+
+export default defineConfig({
+  theme: {
+    extend: {
+      tokens: {
+        colors: {
+          primary: { value: '#0FEE0F' },
+          secondary: { value: '#EE0F0F' }
+        },
+        fonts: {
+          body: { value: 'system-ui, sans-serif' }
+        }
+      }
+    }
+  }
+})
+````
+
+```tsx
+import { token } from '../styled-system/tokens'
+
+function App() {
+  return (
+    <Heading>H1 태그입니다.</Heading>
+  )
+}
+
+const Heading = styled.h1`
+  color: token('colors.primary');
+  font-size: 50px;
+  font-weight: bold;
+`
+```
+
+토큰의 세팅은 tailwincss와 유사한 방법이며 emotion이나 styled-components와 유사한 방법으로 사용할 수 있습니다.
+
+> 이러한 특징은 공식홈페이지에서도 점진적 마이그레이션에 유용하다고 소개하고 있다.
+
+
+#### 템플릿 리터럴
+
+PandaCSS는 템플릿 리터럴을 사용하여 스타일을 정의할 수 있다. 이는 emotion과 유사하다.
+
+```tsx
+import {styled} from "@panda/jsx";
+import {token} from "@panda/tokens";
+
+export default function Home() {
+  return (
+    <>
+      <StyledHeader>
+        Home
+      </StyledHeader>
+    </>
+  );
+}
+
+const StyledHeader = styled.h1`
+  text-align: center;
+  color: token('color.primary');
+  font-size: 3rem;
+  font-weight: 700;
+`
+```
+
+템플릿 리터럴을 사용하기 위해선 panda.config.js 파일에서 아래 속성을 추가해야 한다.
+
+```ts
+syntax: "template-literal",
+```
+
+템플릿 리터를은 아래에 설명할 패턴과 레시피가 생성되지 않는다.
+
+#### 컴포넌트 레시피
+
+다양한 컴포넌트의 variant를 정의할 수 있다.
+
+이렇게 만든 레시피는 component의 기능과는 독립적이라 컴포넌트의 재사용성을 높일 수 있다.
+
+```tsx
+const button = sva({
+  slots: ['button', 'icon', 'label'],
+  base: {
+    button: {
+      width: '160',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '2',
+      padding: '2',
+      borderRadius: 'md',
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'primary',
+      backgroundColor: 'primary',
+      color: 'white',
+      cursor: 'pointer',
+
+      '&:hover': {
+        backgroundColor: 'secondary',
+      }
+    },
+    label: {marginStart: '2'}
+  },
+  variants: {
+    size: {
+      sm: {
+        button: {width: '120', padding: '1'},
+      },
+      md: {
+        button: {width: '240', padding: '1'},
+      }
+    }
+  },
+  defaultVariants: {
+    size: 'sm'
+  }
+})
+```
+
+```tsx
+const Button = () => {
+  const classes = button({size: 'md'})
+
+  return (
+    <button className={classes.button}>
+      Button
+    </button>
+  )
+}
+```
+
+또한 레시피들을 설정에 추가하여 theme을 통해 사용할 수 있다.
+
+#### condition
+
+emotion을 사용할 때는 다양한 attribute를 사용해 조건부 스타일링을 할 수 있었다.
+
+```tsx
+const Button = styled.button`
+  color: ${props => props.primary ? 'hotpink' : 'turquoise'};
+  &:[aria-disabled="true"] {
+    color: gray;
+  }
+`
+```
+
+이런식으로 사용하던 것을 Panda에서는 _를 통해 쉽게 구현할 수 있다.
+
+```tsx
+css({
+  color: 'primary',
+  _hover: {
+    color: 'secondary'
+  }
+})
+```
+
+# 결론
+
+RSC의 패러다임이 달라지면서 기존에 사용하던 라이브러리들이 사용하기 어려워졌다.
+사실 panda를 사용한 이유는 익숙한 문법이 가능해서 사용하려는게 가장 큰 이유였다.
+이 글을 작성하면서 공식문서를 다시 읽어보니, panda에서 제공하는 많은 기능들을 사용하기위해서는
+새로운 방식으로 진행을 해야할 듯 싶다.
+
+이번 기회를 통해 최신기술동향에 맞는 라이브러리를 접하고 사용해보는 것도 좋은 경험이 될 것 같다.

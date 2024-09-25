@@ -20,7 +20,7 @@ export const ArticleCard = ({ post }: Props) => {
         href={`/posts/${post.link}`}
       >
         <StyledCardHeader>
-          <Text as={'h3'} typography={'title-l-bold'}>{post.title}</Text>
+          <Text as={'h3'} typography={'title-l-bold'} align={'center'}>{post.title}</Text>
           <div>
             {post.tags.map((tag, index) => (
               <Text

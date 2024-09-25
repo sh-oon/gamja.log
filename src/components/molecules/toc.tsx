@@ -15,7 +15,7 @@ export const Toc = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
 
   useEffect(() => {
-    const mds = document?.getElementById('markdown')?.querySelectorAll('h2, h3, h4, h5, h6') || []
+    const mds = document?.getElementById('markdown')?.querySelectorAll('h1, h2, h3, h4, h5, h6') || []
     
     setElementPosition(
       Array.from(mds || []).map((md) => {
@@ -100,6 +100,6 @@ const StyledToCItem = styled.aside<{$padding: string}>`
   ${textStyle}
   
   ${({ $padding }) => css`
-    padding-left: ${$padding === 'h2' ? '0' : $padding === 'h3' ? '1rem' : $padding === 'h4' ? '2rem' : '3rem'};
+    padding-left: ${$padding === 'h1' ? '0' : $padding === 'h2' ? '0.5rem' : $padding === 'h3' ? '1rem' : $padding === 'h4' ? '2rem' : '3rem'};
   `}
 `

@@ -31,6 +31,7 @@ const StyledText = styled.span<
 
   color: ${({ color }) => color ? vars.$semantic.color.text[color] : vars.$semantic.color.text.primary};
   text-align: ${({ align }) => align};
+  word-break: keep-all;
 
   ${({ lineLimit }) =>
     lineLimit &&

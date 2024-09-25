@@ -26,6 +26,9 @@ const nextConfig = {
       {
         hostname: 'media.geeksforgeeks.org',
       },
+      {
+        hostname: 'github.com',
+      }
     ]
   },
 }
