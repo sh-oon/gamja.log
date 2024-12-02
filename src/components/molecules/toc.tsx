@@ -3,6 +3,8 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
+import { fetcher } from '../../utils/fetch'
+import { useFetcher } from '../../hooks/useFetcher'
 
 type TElementPosition = {
   id: string
@@ -10,13 +12,14 @@ type TElementPosition = {
   tag: string
 }
 
-
 export const Toc = () => {
   const [elementPosition, setElementPosition] = useState<TElementPosition[]>([])
 
+  const { pending, get } = useFetcher()
+
   useEffect(() => {
     const mds = document?.getElementById('markdown')?.querySelectorAll('h1, h2, h3, h4, h5, h6') || []
-    
+
     setElementPosition(
       Array.from(mds || []).map((md) => {
         return {
@@ -32,19 +35,31 @@ export const Toc = () => {
     const el = elementPosition.find((el) => el.id === id)
     if (!el) return
 
-    window.scrollTo({ top: el.top - 100 , behavior: 'smooth' })
+    window.scrollTo({ top: el.top - 100, behavior: 'smooth' })
+  }
+
+  const testError = async () => {
+    const res = await get('/api/error-test', {
+      cache: 'no-store',
+    })
+    console.log(res)
+  }
+
+  const testSuccess = async () => {
+    const res = await get('/api/success-test', {
+      cache: 'no-store',
+    })
+    console.log(res)
   }
 
   return (
     <StyledToC>
       <ul role={'list'}>
+        <button onClick={testError}>Test Error Btn</button>
+        <button onClick={testSuccess}>Test Success Btn</button>
         {elementPosition.map((el) => {
           return (
-            <StyledToCItem
-              key={el.id}
-              onClick={() => clickToScroll(el.id)}
-              $padding={el.tag}
-            >
+            <StyledToCItem key={el.id} onClick={() => clickToScroll(el.id)} $padding={el.tag}>
               {el.id}
             </StyledToCItem>
           )
@@ -82,24 +97,32 @@ const textStyle = css`
   cursor: pointer;
   color: #666;
   transition: color 0.3s;
-  
+
   &:hover {
     color: #000;
   }
-  
+
   @media (prefers-color-scheme: dark) {
     color: #ccc;
-    
+
     &:hover {
       color: #fff;
     }
   }
 `
 
-const StyledToCItem = styled.aside<{$padding: string}>`
+const StyledToCItem = styled.aside<{ $padding: string }>`
   ${textStyle}
-  
+
   ${({ $padding }) => css`
-    padding-left: ${$padding === 'h1' ? '0' : $padding === 'h2' ? '0.5rem' : $padding === 'h3' ? '1rem' : $padding === 'h4' ? '2rem' : '3rem'};
+    padding-left: ${$padding === 'h1'
+      ? '0'
+      : $padding === 'h2'
+        ? '0.5rem'
+        : $padding === 'h3'
+          ? '1rem'
+          : $padding === 'h4'
+            ? '2rem'
+            : '3rem'};
   `}
 `

@@ -14,8 +14,9 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const slug = context.params?.slug as string
+
   const articleSource = await getPostSourceBySlug(slug)
-  
+
   return {
     props: {
       articleSource,
@@ -25,18 +26,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function ArticlePage({ articleSource }: Props) {
   const post = articleSource.frontmatter
-  
+
   const { isMobile } = useDevice()
-  
+
   return (
     <StyledArticlePage>
-      <div className="md-container">
+      <div className='md-container'>
         <MarkdownHeader post={post} />
-        <div className="md-contents-container">
-          {!isMobile && (<Toc />)}
-          <Markdown
-            source={articleSource}
-          />
+        <div className='md-contents-container'>
+          {!isMobile && <Toc />}
+          <Markdown source={articleSource} />
         </div>
       </div>
     </StyledArticlePage>
@@ -48,14 +47,14 @@ const StyledArticlePage = styled.article`
   padding: 0.75rem;
   background-color: ${vars.$semantic.color.background.white};
   min-height: 100%;
-  
+
   & .md-contents-container {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     gap: 2rem;
     position: relative;
   }
-  
+
   @media (max-width: 768px) {
     & .md-contents-container {
       grid-template-columns: 1fr;
