@@ -36,10 +36,14 @@ export const fill = {
   primaryHover: 'var(--color-neutral-80)',
   primaryPressed: 'var(--color-neutral-80)',
 
+  interactive: 'var(--color-neutral-0)',
+  interactiveHover: 'var(--color-neutral-12)',
+  interactivePressed: 'var(--color-neutral-12)',
+
   error: 'var(--color-fill-error)',
   warning: 'var(--color-fill-warning)',
   success: 'var(--color-fill-success)',
-};
+}
 
 export const border = {
   line: 'var(--color-border-line)',

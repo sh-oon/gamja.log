@@ -51,3 +51,21 @@ export function formatDate(date: string | number | Date, format: string, default
     .replace(/mm/g, minute.toString())
     .replace(/ss/g, second.toString())
 }
+
+export const copyToClipboard = (text: string) => {
+  try {
+    if (typeof window === 'undefined') return
+    if (!window.navigator.clipboard) {
+      const textarea = document.createElement('textarea')
+      textarea.value = text
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textarea)
+    } else {
+      window.navigator.clipboard.writeText(text)
+    }
+  } catch (error) {
+    throw new Error('Failed to copy to clipboard')
+  }
+}
